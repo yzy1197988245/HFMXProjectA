@@ -7,20 +7,25 @@ import {
 } from "@angular/material";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {UEditorModule} from "ngx-ueditor";
+import { TopNavComponent } from './top-nav/top-nav.component';
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+
+    UEditorModule,
+
     MatButtonModule,
     MatAutocompleteModule,
     MatGridListModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule,
-    ReactiveFormsModule,
     MatCardModule,
     MatSlideToggleModule,
     MatSelectModule,
-    UEditorModule,
     MatExpansionModule,
     MatDialogModule,
     MatListModule,
@@ -28,18 +33,23 @@ import {UEditorModule} from "ngx-ueditor";
     MatToolbarModule,
     MatProgressSpinnerModule,
   ],
+  declarations: [TopNavComponent],
   exports: [
+    // CommonModule,
+    TopNavComponent,
+
+    FormsModule,
+    ReactiveFormsModule,
+    UEditorModule,
+
     MatButtonModule,
     MatAutocompleteModule,
     MatGridListModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule,
-    ReactiveFormsModule,
     MatCardModule,
     MatSlideToggleModule,
     MatSelectModule,
-    UEditorModule,
     MatExpansionModule,
     MatDialogModule,
     MatListModule,
@@ -47,6 +57,7 @@ import {UEditorModule} from "ngx-ueditor";
     MatToolbarModule,
     MatProgressSpinnerModule,
   ],
-  declarations: []
+
 })
 export class MyCommonModule { }
+

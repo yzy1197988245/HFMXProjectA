@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import {CanActivate, CanActivateChild, Router} from "@angular/router";
-import {LocalStorage} from "ngx-webstorage";
+import {LocalStorage, SessionStorage} from "ngx-webstorage";
 
 
 @Injectable()
 export class AuthService implements CanActivate, CanActivateChild{
 
-  @LocalStorage() userInfo;
-  @LocalStorage() isLoggedIn;
+  @SessionStorage() userInfo;
+  @SessionStorage() isLoggedIn;
 
   constructor(
     private router: Router,
