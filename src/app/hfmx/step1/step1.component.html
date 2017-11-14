@@ -1,0 +1,139 @@
+<div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center" *ngIf="loading">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+<div *ngIf="!loading">
+  <div *ngIf="preview" style="width: 850px; margin: auto">
+    <app-team [teamInfo]="teamForm.value" [members]="members"></app-team>
+  </div>
+
+  <div style="width: 850px; margin: auto" [hidden]="preview">
+    <mat-accordion>
+      <mat-expansion-panel [expanded]="true" (opened)="step = 0">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            个人信息
+          </mat-panel-title>
+          <mat-panel-description *ngIf="teamForm.controls['phone'].invalid" style="color: darkred">
+            请补全个人信息
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+          <input [formControl]="teamForm.controls['phone']" matInput placeholder="联系电话">
+          <mat-error *ngIf="teamForm.controls['phone'].hasError('required')">请输入联系电话</mat-error>
+        </mat-form-field>
+        <mat-action-row>
+          <button mat-raised-button color="primary" (click)="step = step + 1">下一步</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [expanded]="true" (opened)="step = 1">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            学校信息
+          </mat-panel-title>
+          <mat-panel-description *ngIf="teamForm.controls['hfzx'].invalid || teamForm.controls['sf'].invalid" style="color: darkred">
+            请输入学校信息
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div style="display: flex; flex-direction: row">
+          <mat-form-field style="flex-grow: 1; margin: 10px">
+            <input [formControl]="teamForm.controls['hfzx']" matInput placeholder="回访学校全称" [matAutocomplete]="zx" (input)="searchZx($event.target.value)">
+          </mat-form-field>
+          <mat-form-field style="flex-grow: 1; margin: 10px">
+            <mat-select [formControl]="teamForm.controls['sf']" placeholder="所在省份">
+              <mat-option *ngFor="let sf of sfOptions" [value]="sf.NAME">
+                {{ sf.NAME }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <mat-action-row>
+          <button mat-button color="primary" (click)="step = step - 1">上一步</button>
+          <button mat-raised-button color="primary" (click)="step = step + 1">下一步</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [expanded]="step === 2" (opened)="step = 2">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            成员信息
+          </mat-panel-title>
+
+        </mat-expansion-panel-header>
+
+        <table class="member-table">
+          <thead>
+          <tr><th>学号</th><th>姓名</th><th>班级</th><th>联系方式</th><th>操作</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let member of members">
+            <td>{{member.xh}}</td>
+            <td>{{member.xm}}</td>
+            <td>{{member.bj}}</td>
+            <td>{{member.phone}}</td>
+            <td><button mat-mini-fab (click)="deleteMember(member)" color="warn">删除</button></td>
+          </tr>
+          </tbody>
+        </table>
+
+        <div style="text-align: center; margin-top: 10px">
+          <button mat-raised-button color="primary" (click)="addMember()">添加成员</button>
+        </div>
+
+        <mat-action-row>
+          <button mat-button color="primary" (click)="step = step - 1">上一步</button>
+          <button mat-raised-button color="primary" (click)="step = step + 1">下一步</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [expanded]="step === 3" (opened)="step = 3">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            活动计划
+          </mat-panel-title>
+          <mat-panel-description *ngIf="teamForm.controls['hdjh'].invalid" style="color: darkred">
+            请填写活动计划
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <ueditor #hdjh [formControl]="teamForm.controls['hdjh']"></ueditor>
+        <mat-action-row>
+          <button mat-button color="primary" (click)="step = step - 1">上一步</button>
+          <button mat-raised-button color="primary" (click)="step = step + 1">下一步</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [expanded]="step === 4" (opened)="step = 4">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            申报优势
+          </mat-panel-title>
+          <mat-panel-description *ngIf="teamForm.controls['sbys'].invalid" style="color: darkred">
+            请填写申报优势
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <ueditor #sbys [formControl]="teamForm.controls['sbys']"></ueditor>
+        <mat-action-row>
+          <button mat-button color="primary" (click)="step = step - 1">上一步</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+  <div style="text-align: center; margin-top: 10px" *ngIf="teamForm.value.xh == authService.userInfo.xh">
+    <button mat-button style="margin: 10px" color="primary" (click)="preview = true" [disabled]="teamForm.invalid" *ngIf="!preview">预览报名表</button>
+    <button mat-button style="margin: 10px" color="primary" (click)="preview = false" *ngIf="canEdit()">编辑</button>
+    <button mat-raised-button style="margin: 10px" color="primary" (click)="commit()" [disabled]="teamForm.invalid" *ngIf="teamId == null">提交</button>
+    <button mat-raised-button style="margin: 10px" color="primary" (click)="updateTeam()" [disabled]="teamForm.invalid" *ngIf="teamId != null">更新报名表</button>
+    <button mat-raised-button style="margin: 10px" color="warn" (click)="reset()" *ngIf="!preview">重置报名表</button>
+    <button mat-raised-button style="margin: 10px" color="warn" (click)="deleteTeam()" *ngIf="teamId != null">取消报名</button>
+
+  </div>
+
+  <mat-autocomplete #zx="matAutocomplete">
+    <mat-option *ngFor="let option of zxOptions" [value]="option">
+      {{ option }}
+    </mat-option>
+  </mat-autocomplete>
+</div>
