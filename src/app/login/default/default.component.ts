@@ -50,4 +50,3 @@ export class DefaultComponent implements OnInit {
       })
   }
 }
-

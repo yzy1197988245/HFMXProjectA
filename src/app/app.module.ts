@@ -7,12 +7,12 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
 import {HttpService} from "./http.service";
 import {UEditorModule} from "ngx-ueditor";
-import {MessageService} from "primeng/components/common/messageservice";
-import {GrowlModule} from "primeng/primeng";
 import {AuthService} from "./auth.service";
 import {MyCommonModule} from "./my-common/my-common.module";
 import { TestComponent } from './test/test.component';
 import {Ng2Webstorage} from "ngx-webstorage";
+import {AlertModule} from "ngx-bootstrap";
+import {MessageService} from "./my-common/message.service";
 
 const routes: Routes = [
   {
@@ -24,6 +24,15 @@ const routes: Routes = [
     canActivate: [AuthService],
     canActivateChild: [AuthService],
     loadChildren: 'app/hfmx/hfmx.module#HfmxModule'
+  },
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: 'login'
   }
 ];
 
@@ -35,9 +44,10 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MyCommonModule,
     HttpClientModule,
-    GrowlModule,
+    MyCommonModule,
+
+    // GrowlModule,
     RouterModule.forRoot(routes, {useHash: true}),
     UEditorModule.forRoot({
       path: '/assets/ueditor/',
@@ -52,13 +62,16 @@ const routes: Routes = [
         autoFloatEnabled: false,
       }
     }),
-    Ng2Webstorage
+    Ng2Webstorage,
+    AlertModule.forRoot(),
   ],
   providers: [
     HttpService,
     AuthService,
-    MessageService,
+    MessageService
+    // MessageService,
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

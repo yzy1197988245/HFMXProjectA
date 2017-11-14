@@ -4,9 +4,9 @@ import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 import {HttpService} from "../../http.service";
 import {MatDialog, MatDialogRef} from "@angular/material";
-import {MessageService} from "primeng/components/common/messageservice";
 import {AuthService} from "../../auth.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {MessageService} from "../../my-common/message.service";
 
 @Component({
   selector: 'app-step1',
@@ -14,8 +14,6 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./step1.component.scss']
 })
 export class Step1Component implements OnInit {
-
-  step = 0;
 
   zxOptions = [];
   sfOptions = [];
@@ -25,6 +23,7 @@ export class Step1Component implements OnInit {
   preview = true;
   teamId;
   loading = true;
+
 
   constructor(
     private httpService: HttpService,
@@ -83,21 +82,16 @@ export class Step1Component implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result!=null && !this.memberExist(result)) {
         if (result.xh == this.authService.userInfo.xh) {
-          this.messageService.add({
-            severity: 'error',
-            summary: '不能添加自己为成员'
+          this.messageService.showDanger('不能添加自己为成员!');
+        } else {
+          this.httpService.checkMember(result.xh).then(response => {
+            if (response.code == 200) {
+              this.members.push(result);
+            } else {
+              this.messageService.showDanger('该成员已有团队，添加失败!')
+            }
           });
         }
-        this.httpService.checkMember(result.xh).then(response => {
-          if (response.code == 200) {
-            this.members.push(result);
-          } else {
-            this.messageService.add({
-              severity: 'warn',
-              summary: '该成员已拥有团队，添加失败',
-            })
-          }
-        });
       }
     });
   }
@@ -124,17 +118,11 @@ export class Step1Component implements OnInit {
     this.httpService.createTeam(params)
       .then(response => {
         if (response.code == 200) {
-          this.messageService.add({
-            severity: 'success',
-            summary: '申请成功'
-          });
+          this.messageService.showSuccess('提交申请成功!');
           this.teamId = response.data;
           this.preview = true;
         } else {
-          this.messageService.add({
-            severity: 'warn',
-            summary: response.message
-          })
+          this.messageService.showDanger(response.message);
         }
       });
   }
@@ -153,37 +141,22 @@ export class Step1Component implements OnInit {
       .then(response => {
         if (response.code == 200) {
           this.preview = true;
-          this.messageService.add({
-            severity: 'success',
-            summary: '更新成功!'
-          })
+          this.messageService.showSuccess('更新成功!');
         } else {
-          this.messageService.add({
-            severity: 'warn',
-            summary: response.message
-          })
+          this.messageService.showDanger(response.message);
         }
       });
   }
-
 
   deleteTeam():void {
     this.httpService.deleteTeam(this.teamId)
       .then(response => {
         if (response.code == 200) {
-          this.messageService.add({
-            severity: 'success',
-            summary: '取消报名成功！'
-          });
-          this.reset();
+          this.messageService.showSuccess('取消报名成功!');
           this.teamId = null;
           this.preview = false;
         } else {
-          this.messageService.add({
-            severity: 'error',
-            summary: '取消报名失败！'
-            }
-          )
+          this.messageService.showDanger('取消报名失败!');
         }
       })
   }
@@ -260,4 +233,3 @@ export class AddMemberDialog implements OnInit{
     this.memberForm.controls['bj'].setValue(studentInfos[2]);
   }
 }
-

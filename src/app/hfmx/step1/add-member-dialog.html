@@ -1,4 +1,4 @@
-<div class="container">
+<div class="my-container">
   <mat-form-field>
     <input [formControl]="userInput" matInput placeholder="学号" [matAutocomplete]="xs" (input)="searchXs($event.target.value)">
     <mat-error *ngIf="memberForm.controls['xm'].invalid || memberForm.controls['xh'].invalid">请选择学生</mat-error>

@@ -9,6 +9,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {UEditorModule} from "ngx-ueditor";
 import { TopNavComponent } from './top-nav/top-nav.component';
 import {CommonModule} from "@angular/common";
+import {MessageService} from "./message.service";
+import {AlertModule} from "ngx-bootstrap/alert";
+import { AlertCenterComponent } from './alert-center/alert-center.component';
 
 @NgModule({
   imports: [
@@ -32,11 +35,13 @@ import {CommonModule} from "@angular/common";
     MatSnackBarModule,
     MatToolbarModule,
     MatProgressSpinnerModule,
+    AlertModule
   ],
-  declarations: [TopNavComponent],
+  declarations: [TopNavComponent, AlertCenterComponent],
   exports: [
     // CommonModule,
     TopNavComponent,
+    AlertCenterComponent,
 
     FormsModule,
     ReactiveFormsModule,
@@ -56,8 +61,11 @@ import {CommonModule} from "@angular/common";
     MatSnackBarModule,
     MatToolbarModule,
     MatProgressSpinnerModule,
+    AlertModule,
   ],
-
+  providers: [
+    // MessageService
+  ]
 })
 export class MyCommonModule { }
 
