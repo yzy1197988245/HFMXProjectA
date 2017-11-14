@@ -194,9 +194,9 @@ export class Step1Component implements OnInit {
       xm: this.authService.userInfo.xm,
       xh: this.authService.userInfo.xh,
       bj: this.authService.userInfo.bj,
-      phone: '',
-      hfzx: '',
-      sf: '',
+      phone: null,
+      hfzx: null,
+      sf: null,
       hdjh: '',
       sbys: ''
     });
