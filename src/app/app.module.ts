@@ -5,14 +5,14 @@ import { AppComponent } from './app.component';
 import {RouterModule, Routes} from "@angular/router";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
-import {HttpService} from "./http.service";
+import {HttpService} from "./services/http.service";
 import {UEditorModule} from "ngx-ueditor";
-import {AuthService} from "./auth.service";
+import {AuthService} from "./services/auth.service";
 import {MyCommonModule} from "./my-common/my-common.module";
 import { TestComponent } from './test/test.component';
 import {Ng2Webstorage} from "ngx-webstorage";
 import {AlertModule} from "ngx-bootstrap";
-import {MessageService} from "./my-common/message.service";
+import {MessageService} from "./services/message.service";
 
 const routes: Routes = [
   {

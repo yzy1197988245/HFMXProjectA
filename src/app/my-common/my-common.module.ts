@@ -9,7 +9,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {UEditorModule} from "ngx-ueditor";
 import { TopNavComponent } from './top-nav/top-nav.component';
 import {CommonModule} from "@angular/common";
-import {MessageService} from "./message.service";
+import {MessageService} from "../services/message.service";
 import {AlertModule} from "ngx-bootstrap/alert";
 import { AlertCenterComponent } from './alert-center/alert-center.component';
 

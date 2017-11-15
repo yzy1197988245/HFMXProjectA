@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
-import {HttpService} from "../../http.service";
+import {HttpService} from "../../services/http.service";
 import {MatDialog, MatDialogRef} from "@angular/material";
-import {AuthService} from "../../auth.service";
+import {AuthService} from "../../services/auth.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {MessageService} from "../../my-common/message.service";
+import {MessageService} from "../../services/message.service";
 
 @Component({
   selector: 'app-step1',
