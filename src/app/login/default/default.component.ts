@@ -58,7 +58,7 @@ export class DefaultComponent implements OnInit {
       this.currentBackground = this.backgroundImages.shift();
       setTimeout(() => {
         this.backgroundState = 'show';
-      }, 200)
+      }, 300)
     } else {
       setTimeout(() => {
         this.backgroundState = 'hide';

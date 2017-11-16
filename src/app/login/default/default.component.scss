@@ -2,9 +2,10 @@
   position: fixed;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: -100;
   display: flex;
   align-items: center;
+  justify-content: center;
   img {
     width: 100%;
   }
@@ -16,11 +17,31 @@
   left: 0;
   right: 0;
   bottom: 0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
+
+  .logo {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    img {
+      height: 120px;
+      margin: 30px 10px 30px 10px;
+    }
+  }
+
+  //.logo:after {
+  //  position: absolute;
+  //  top: 0;
+  //  left: 0;
+  //  right: 0;
+  //  bottom: 0;
+  //  filter: blur(10px);
+  //  background: rgba(255, 255, 255, 0.9);
+  //  z-index: -1;
+  //  content: "";
+  //}
 
   .login-panel {
+    float: right;
     width: 350px;
     height: 800px;
     padding-left: 40px;
@@ -30,6 +51,7 @@
     background: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
   }
 }
+
 .my-container {
   display: flex;
   flex-direction: column;
@@ -38,3 +60,4 @@
     margin: 10px;
   }
 }
+
