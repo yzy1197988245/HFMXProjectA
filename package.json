@@ -29,6 +29,7 @@
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
+    "intl": "^1.2.5",
     "ngx-bootstrap": "^2.0.0-beta.8",
     "ngx-ueditor": "^1.0.9",
     "ngx-webstorage": "^2.0.0",

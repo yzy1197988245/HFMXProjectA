@@ -19,8 +19,12 @@
     </div>
   </div>
 </div>
-<div class="background-image" >
-  <!--<img [src]="currentBackground" [@transform]="backgroundState" (@transform.done)="changeState()">-->
+<div class="background-image" [@transform]="background1State" (@transform.done)="changeState1()">
+  <img [src]="currentBackground1" >
+  <!--<img [src]="backgroundImages[0]">-->
   <!--<img [src]="backgroundImages[0]" hidden="true">-->
-  <img src="assets/background/8.jpg">
+  <!--<img src="assets/background/8.jpg" @test>-->
+</div>
+<div class="background-image" [@transform]="background2State" (@transform.done)="changeState2()">
+  <img [src]="currentBackground2" >
 </div>
