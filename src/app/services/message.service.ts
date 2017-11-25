@@ -11,7 +11,7 @@ export class MessageService {
     this.messages.push(message);
     setTimeout(() => {
       this.messages.pop()
-    }, 1300)
+    }, 1500)
   }
 
   public showSuccess(content: string): void {

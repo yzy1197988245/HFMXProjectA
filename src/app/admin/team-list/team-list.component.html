@@ -1,0 +1,32 @@
+<app-team-detail [teamList]="teamList" [currentTeam]="currentTeam" *ngIf="showDetail" (closed)="detailClosed($event)"></app-team-detail>
+
+<div class="team-list-container">
+  <div>
+    <button mat-raised-button="" color="primary">导出汇总表</button>
+  </div>
+  <table class="team-list">
+    <thead>
+    <tr>
+      <th>年份</th>
+      <th>学院</th>
+      <th>队长姓名</th>
+      <th>学号</th>
+      <th>回访中学名称</th>
+      <th>所在省份</th>
+      <th>联系电话</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let team of teamList" role="button" (click)="previewTeamDetail(team)" [class.selected]="isSelected(team)">
+      <td>{{team['nf']}}</td>
+      <td></td>
+      <td>{{team['dz']}}</td>
+      <td></td>
+      <td>{{team['hfzx']}}</td>
+      <td>{{team['sf']}}</td>
+      <td>{{team['phone']}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

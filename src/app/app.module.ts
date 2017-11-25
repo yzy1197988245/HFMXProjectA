@@ -26,14 +26,20 @@ const routes: Routes = [
     loadChildren: 'app/hfmx/hfmx.module#HfmxModule'
   },
   {
+    path: 'admin',
+    canActivate: [AuthService],
+    canActivateChild: [AuthService],
+    loadChildren: 'app/admin/admin.module#AdminModule'
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
   },
-  {
-    path: '**',
-    redirectTo: 'login'
-  }
+  // {
+  //   path: '**',
+  //   redirectTo: 'login'
+  // }
 ];
 
 @NgModule({
@@ -58,7 +64,7 @@ const routes: Routes = [
         serverUrl: HttpService.base_url+'laravel-u-editor-server/server',
         autoHeightEnable: false,
         initialFrameHeight: 400,
-        initialFrameWidth: 800,
+        initialFrameWidth: 950,
         autoFloatEnabled: false,
       }
     }),

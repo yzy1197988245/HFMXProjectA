@@ -5,7 +5,7 @@ import {Router} from "@angular/router";
 import * as md5 from "md5";
 import {AuthService} from "../../services/auth.service";
 import {DomSanitizer} from "@angular/platform-browser";
-import {animate, keyframes, state, style, transition, trigger} from "@angular/animations";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-default',
@@ -16,11 +16,10 @@ import {animate, keyframes, state, style, transition, trigger} from "@angular/an
       state('hide', style({opacity: 0, transform: 'scale(1, 1)'})),
       state('show', style({opacity: 1, transform: 'scale(1.1, 1.1)'})),
       transition('hide => show', [
-        // style({opacity: 0, transform: 'scale(1, 1)'}),
-        animate('3s ease-in-out')
+        animate('1s ease-in-out')
       ]),
       transition('show => hide', [
-        animate('3s ease-in-out', style({opacity: 0}))
+        animate('1s ease-in-out')
       ])
     ]),
     trigger('test', [
@@ -53,15 +52,11 @@ export class DefaultComponent implements OnInit {
     this.userName = new FormControl(null, [Validators.required]);
     this.password = new FormControl(null, [Validators.required]);
     for (let i = 1; i < 11; i++) {
-      // let styleString = "url(\"assets/background/" + i + ".jpg\") no-repeat center/100%";
-      // this.backgroundImages.push(this.domSanitizer.bypassSecurityTrustStyle(styleString));
       let urlString = 'assets/background/' + i + '.jpg';
       this.backgroundImages.push(this.domSanitizer.bypassSecurityTrustUrl(urlString));
     }
     this.currentBackground1 = this.backgroundImages.shift();
     this.backgroundImages.push(this.currentBackground1);
-    // this.currentBackground2 = this.backgroundImages.shift();
-    // this.backgroundImages.push(this.currentBackground2);
     this.background1State = 'show';
     this.background2State = 'hide';
   }
@@ -114,7 +109,7 @@ export class DefaultComponent implements OnInit {
         } else {
           this.authService.isLoggedIn = true;
           this.authService.userInfo = response.data;
-          this.router.navigate(['/', 'hfmx', 'step1']);
+          this.router.navigate([response.data.redirect]);
         }
       })
   }

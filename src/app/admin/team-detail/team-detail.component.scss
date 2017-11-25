@@ -1,0 +1,62 @@
+.my-container {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.table-container {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 50%;
+  margin-left: -500px;
+  width: 1000px;
+  overflow-y: auto;
+  background: white;
+
+  .info-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    table, thead, tbody, tr, td, th {
+      border: 1px solid #3f51b5;
+    }
+
+    td {
+      padding: 10px;
+    }
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .title {
+     font-size: 20px;
+     padding: 20px;
+   }
+}
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+}
+
+.left-button {
+  position: absolute;
+  left: 40px;
+  top: 50%;
+  margin-top: -28px;
+}
+
+.right-button {
+  position: absolute;
+  top: 50%;
+  right: 40px;
+  margin-top: -28px;
+}

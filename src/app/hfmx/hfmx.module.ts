@@ -12,6 +12,15 @@ const routes: Routes = [
     component: DefaultComponent,
     children: [
       {
+        path: '',
+        redirectTo: 'step1',
+        pathMatch: 'full'
+      },
+      // {
+      //   path: '**',
+      //   redirectTo: 'step1'
+      // },
+      {
         path:'step1',
         component: Step1Component
       }

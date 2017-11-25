@@ -3,12 +3,12 @@
 </div>
 <div *ngIf="!loading" >
   <div #teamPrint>
-    <div *ngIf="preview" style="width: 850px; margin: auto" >
+    <div *ngIf="preview" style="width: 1000px; margin: auto" >
       <app-team [teamInfo]="teamForm.value" [members]="members"></app-team>
     </div>
   </div>
 
-  <div style="width: 850px; margin: auto" [hidden]="preview">
+  <div style="width: 1000px; margin: auto" [hidden]="preview">
     <mat-card>
       <mat-card-title>团队负责人信息</mat-card-title>
       <mat-card-content>

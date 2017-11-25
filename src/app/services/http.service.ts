@@ -5,7 +5,7 @@ import {UEditorComponent} from "ngx-ueditor";
 @Injectable()
 export class HttpService {
 
-  static base_url = 'http://219.242.68.33:81/';
+  static base_url = 'http://localhost/';
 
   constructor(
     private http: HttpClient
@@ -62,6 +62,16 @@ export class HttpService {
 
   deleteTeam(teamId): Promise<any> {
     return this.http.post(HttpService.base_url + 'api/hfmx/delete-team', {'teamId': teamId})
+      .toPromise();
+  }
+
+  adminGetTeamList(): Promise<any> {
+    return this.http.post(HttpService.base_url + 'api/team/admin-team-list', {})
+      .toPromise();
+  }
+
+  adminGetTeamInfo(teamId): Promise<any> {
+    return this.http.post(HttpService.base_url + 'api/team/admin-team-info', {'teamId': teamId})
       .toPromise();
   }
 }

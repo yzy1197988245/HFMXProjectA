@@ -1,0 +1,53 @@
+<div class="my-container" [@transform]="currentState" (@transform.done)="animateDone()">
+  <div class="table-container">
+    <div style="padding: 20px">
+      <p class="title center">中国矿业大学（北京）寒假大学生回访高中母校宣传活动报名表</p>
+      <table *ngIf="teamInfo != null" class="info-table">
+        <tbody>
+        <tr>
+          <td colspan="2" class="center">回访学校全称</td>
+          <td colspan="2" class="center">{{teamInfo['hfzx']}}</td>
+          <td class="center">所在省市</td>
+          <td class="center">{{teamInfo['sf']}}</td>
+        </tr>
+        <tr>
+          <td class="center" width="13%">成员</td>
+          <td class="center" width="13%">姓名</td>
+          <td class="center" width="20%">学号</td>
+          <td class="center" width="21%">身份证号</td>
+          <td class="center" width="13%">班级</td>
+          <td class="center" width="20%">手机号</td>
+        </tr>
+        <tr>
+          <td class="center">组长</td>
+          <td class="center">{{teamInfo['xm']}}</td>
+          <td class="center">{{teamInfo['xh']}}</td>
+          <td class="center">{{teamInfo['sfzh']}}</td>
+          <td class="center">{{teamInfo['bj']}}</td>
+          <td class="center">{{teamInfo['phone']}}</td>
+        </tr>
+        <tr *ngFor="let member of teamInfo['members']">
+          <td class="center">组员</td>
+          <td class="center">{{member['xm']}}</td>
+          <td class="center">{{member['xh']}}</td>
+          <td class="center">{{member['sfzh']}}</td>
+          <td class="center">{{member['bj']}}</td>
+          <td class="center">{{member['phone']}}</td>
+        </tr>
+        <tr>
+          <td class="center">活动计划</td>
+          <td colspan="5" [innerHtml]="hdjh"></td>
+        </tr>
+        <tr>
+          <td class="center">申报优势</td>
+          <td colspan="5" [innerHtml]="sbys"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <button mat-mini-fab="" (click)="close()" class="close-button">关闭</button>
+  <button mat-fab class="left-button" color="primary" (click)="previous()">上一个</button>
+  <button mat-fab class="right-button" color="primary" (click)="next()">下一个</button>
+</div>
+
