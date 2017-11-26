@@ -1,83 +1,97 @@
-<div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center" *ngIf="loading">
+<div class="indicator-panel" *ngIf="loading">
   <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
 </div>
-<div *ngIf="!loading" >
-  <div #teamPrint>
-    <div *ngIf="preview" style="width: 1000px; margin: auto" >
-      <app-team [teamInfo]="teamForm.value" [members]="members"></app-team>
-    </div>
+<div *ngIf="!loading">
+  <div *ngIf="teamId != null && preview" class="success">
+    <p class="title">恭喜你报名成功!</p>
+    <p class="description">QQ群号:678890070</p>
+    <img src="assets/code.png">
   </div>
-
-  <div style="width: 1000px; margin: auto" [hidden]="preview">
-    <mat-card>
-      <mat-card-title>团队负责人信息</mat-card-title>
-      <mat-card-content>
-        <mat-form-field>
-          <input [formControl]="teamForm.controls['phone']" matInput placeholder="联系电话">
-          <mat-error *ngIf="teamForm.controls['phone'].hasError('required')">请输入联系电话</mat-error>
-        </mat-form-field>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card>
-      <mat-card-title>回访中学信息</mat-card-title>
-      <mat-card-content>
-        <div style="display: flex; flex-direction: row">
-          <mat-form-field style="flex-grow: 1; margin: 10px">
-            <input [formControl]="teamForm.controls['hfzx']" matInput placeholder="回访学校全称" [matAutocomplete]="zx" (input)="searchZx($event.target.value)">
-            <mat-error *ngIf="teamForm.controls['hfzx'].invalid">请输入学校信息</mat-error>
-          </mat-form-field>
-          <mat-form-field style="flex-grow: 1; margin: 10px">
-            <mat-select [formControl]="teamForm.controls['sf']" placeholder="所在省份">
-              <mat-option *ngFor="let sf of sfOptions" [value]="sf.NAME">
-                {{ sf.NAME }}
-              </mat-option>
-            </mat-select>
-            <mat-error *ngIf="teamForm.controls['sf'].invalid">请选择省份</mat-error>
-          </mat-form-field>
-        </div>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card>
-      <mat-card-title>团队成员</mat-card-title>
-      <mat-card-content>
-        <table class="member-table">
-          <thead>
-          <tr><th>学号</th><th>姓名</th><th>班级</th><th>联系方式</th><th>操作</th>
-          </tr>
-          </thead>
+  <div *ngIf="preview" style="width: 1000px; margin: auto" >
+    <app-team [teamInfo]="teamForm.value" [members]="members"></app-team>
+  </div>
+  <div style="width: 1000px; margin: auto" *ngIf="!preview">
+    <div class="table-container">
+      <div style="padding: 20px">
+        <p class="title center">中国矿业大学（北京）寒假大学生回访高中母校宣传活动报名表</p>
+        <table *ngIf="teamForm != null" class="info-table">
           <tbody>
+          <tr>
+            <td colspan="2" class="center item-title">回访学校全称</td>
+            <td colspan="2" class="input">
+              <mat-form-field>
+                <input [formControl]="teamForm.controls['hfzx']" matInput placeholder="回访学校全称" [matAutocomplete]="zx" (input)="searchZx($event.target.value)">
+                <mat-error *ngIf="teamForm.controls['hfzx'].invalid">请输入学校信息</mat-error>
+              </mat-form-field>
+            </td>
+            <td class="center item-title">所在省市</td>
+            <td class="input">
+              <mat-form-field>
+                <mat-select [formControl]="teamForm.controls['sf']" placeholder="所在省份">
+                  <mat-option *ngFor="let sf of sfOptions" [value]="sf.NAME">
+                    {{ sf.NAME }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="teamForm.controls['sf'].invalid">请选择省份</mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td class="center item-title" width="10%">成员</td>
+            <td class="center item-title" width="15%">姓名</td>
+            <td class="center item-title" width="20%">学号</td>
+            <td class="center item-title" width="20%">班级</td>
+            <td class="center item-title" width="15%">手机号</td>
+            <td class="center item-title" width="20%">操作</td>
+          </tr>
+          <tr>
+            <td class="center item-title">组长</td>
+            <td>{{teamForm.value['xm']}}</td>
+            <td>{{teamForm.value['xh']}}</td>
+            <td>{{teamForm.value['bj']}}</td>
+            <td class="input">
+              <mat-form-field>
+                <input [formControl]="teamForm.controls['phone']" matInput placeholder="联系电话">
+                <mat-error *ngIf="teamForm.controls['phone'].hasError('required')">请输入联系电话</mat-error>
+              </mat-form-field>
+            </td>
+            <td>
+              <!--<button mat-mini-fab (click)="deleteMember(member)" color="warn">删除</button>-->
+            </td>
+          </tr>
           <tr *ngFor="let member of members">
-            <td>{{member.xh}}</td>
-            <td>{{member.xm}}</td>
-            <td>{{member.bj}}</td>
-            <td>{{member.phone}}</td>
-            <td><button mat-mini-fab (click)="deleteMember(member)" color="warn">删除</button></td>
+            <td class="center item-title">组员</td>
+            <td class="">{{member['xm']}}</td>
+            <td class="">{{member['xh']}}</td>
+            <td class="">{{member['bj']}}</td>
+            <td class="">{{member['phone']}}</td>
+            <td class="center">
+              <button mat-mini-fab (click)="deleteMember(member)" color="warn" >删除</button>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="6" class="center">
+              <button mat-raised-button color="primary" (click)="addMember()">添加成员</button>
+            </td>
+          </tr>
+          <tr>
+            <td class="center item-title">活动计划</td>
+            <td colspan="5" class="input">
+              <ueditor #hdjh [formControl]="teamForm.controls['hdjh']"></ueditor>
+              <p style="color: red" *ngIf="teamForm.controls['hdjh'].invalid">*请输入活动计划</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="center item-title">申报优势</td>
+            <td colspan="5" class="input">
+              <ueditor #sbys [formControl]="teamForm.controls['sbys']"></ueditor>
+              <p style="color: red" *ngIf="teamForm.controls['sbys'].invalid">*请输入申报优势</p>
+            </td>
           </tr>
           </tbody>
         </table>
-        <div style="text-align: center; margin-top: 10px">
-          <button mat-raised-button color="primary" (click)="addMember()">添加成员</button>
-        </div>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card>
-      <mat-card-title>活动计划</mat-card-title>
-      <mat-card-content>
-        <ueditor #hdjh [formControl]="teamForm.controls['hdjh']"></ueditor>
-        <p style="color: red" *ngIf="teamForm.controls['hdjh'].invalid">*请输入活动计划</p>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card>
-      <mat-card-title>申报优势</mat-card-title>
-      <mat-card-content>
-        <ueditor #sbys [formControl]="teamForm.controls['sbys']"></ueditor>
-        <p style="color: red" *ngIf="teamForm.controls['sbys'].invalid">*请输入申报优势</p>
-      </mat-card-content>
-    </mat-card>
+      </div>
+    </div>
   </div>
 
   <div style="text-align: center; margin-top: 10px" *ngIf="teamForm.value.xh == authService.userInfo.xh">

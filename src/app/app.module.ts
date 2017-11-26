@@ -64,7 +64,7 @@ const routes: Routes = [
         serverUrl: HttpService.base_url+'laravel-u-editor-server/server',
         autoHeightEnable: false,
         initialFrameHeight: 400,
-        initialFrameWidth: 950,
+        initialFrameWidth: '100%',
         autoFloatEnabled: false,
       }
     }),

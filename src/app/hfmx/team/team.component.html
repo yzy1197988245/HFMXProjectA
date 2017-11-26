@@ -1,55 +1,46 @@
-<mat-card>
-  <mat-card-title>团队负责人基本信息</mat-card-title>
-  <mat-card-content class="info">
-    <div class="info">
-      <div class="info-item"><span class="label">学号 : </span><span>{{teamInfo.xh}}</span></div>
-      <div class="info-item"><span class="label">姓名 : </span><span>{{teamInfo.xm}}</span></div>
-      <div class="info-item"><span class="label">班级 : </span><span>{{teamInfo.bj}}</span></div>
-      <div class="info-item"><span class="label">联系电话 : </span><span>{{teamInfo.phone}}</span></div>
-    </div>
-  </mat-card-content>
-</mat-card>
-<mat-card>
-  <mat-card-title>回访学校信息</mat-card-title>
-  <mat-card-content>
-    <div class="info">
-      <div class="info-item"><span class="label">回访学校 : </span><span>{{teamInfo.hfzx}}</span></div>
-      <div class="info-item"><span class="label">所属省份 : </span><span>{{teamInfo.sf}}</span></div>
-    </div>
-  </mat-card-content>
-</mat-card>
-<mat-card>
-  <mat-card-title>团队成员</mat-card-title>
-  <mat-card-content>
-    <table class="member-table">
-      <thead>
-      <tr>
-        <th>学号</th>
-        <th>姓名</th>
-        <!--<th>身份证号</th>-->
-        <th>班级</th>
-        <th>联系方式</th>
-      </tr>
-      </thead>
+<div class="table-container">
+  <div style="padding: 20px">
+    <p class="title center">中国矿业大学（北京）寒假大学生回访高中母校宣传活动报名表</p>
+    <table *ngIf="teamInfo != null" class="info-table">
       <tbody>
+      <tr>
+        <td class="center item-title">回访学校全称</td>
+        <td colspan="2" class="">{{teamInfo['hfzx']}}</td>
+        <td class="center item-title">所在省市</td>
+        <td class="">{{teamInfo['sf']}}</td>
+      </tr>
+      <tr>
+        <td class="center item-title" width="15%">成员</td>
+        <td class="center item-title" width="20%">姓名</td>
+        <td class="center item-title" width="25%">学号</td>
+        <td class="center item-title" width="15%">班级</td>
+        <td class="center item-title" width="25%">手机号</td>
+      </tr>
+      <tr>
+        <td class="center item-title">组长</td>
+        <td class="">{{teamInfo['xm']}}</td>
+        <td class="">{{teamInfo['xh']}}</td>
+        <td class="">{{teamInfo['bj']}}</td>
+        <td class="">{{teamInfo['phone']}}</td>
+      </tr>
       <tr *ngFor="let member of members">
-        <td>{{member.xh}}</td>
-        <td>{{member.xm}}</td>
-        <!--<td>{{member.sfzh}}</td>-->
-        <td>{{member.bj}}</td>
-        <td>{{member.phone}}</td>
+        <td class="center item-title">组员</td>
+        <td class="">{{member['xm']}}</td>
+        <td class="">{{member['xh']}}</td>
+        <td class="">{{member['bj']}}</td>
+        <td class="">{{member['phone']}}</td>
+      </tr>
+      <tr>
+        <td class="center item-title">活动计划</td>
+        <td colspan="4" [innerHtml]="hdjh"></td>
+      </tr>
+      <tr>
+        <td class="center item-title">申报优势</td>
+        <td colspan="4" [innerHtml]="sbys"></td>
       </tr>
       </tbody>
     </table>
-  </mat-card-content>
-</mat-card>
-<mat-card>
-  <mat-card-title>活动计划</mat-card-title>
-  <mat-card-content [innerHtml]="teamInfo['hdjh']">
-  </mat-card-content>
-</mat-card>
-<mat-card>
-  <mat-card-title>申报优势</mat-card-title>
-  <mat-card-content [innerHtml]="teamInfo['sbys']">
-  </mat-card-content>
-</mat-card>
+  </div>
+</div>
+
+

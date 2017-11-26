@@ -24,7 +24,6 @@ export class Step1Component implements OnInit {
   teamId;
   loading = true;
 
-
   constructor(
     private httpService: HttpService,
     private dialog: MatDialog,
