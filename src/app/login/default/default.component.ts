@@ -40,6 +40,7 @@ export class DefaultComponent implements OnInit {
   currentBackground2;
   background1State;
   background2State;
+  loading = false;
 
   constructor(
     private httpService: HttpService,
@@ -96,8 +97,10 @@ export class DefaultComponent implements OnInit {
       userName: this.userName.value,
       password: md5(this.password.value)
     };
+    this.loading = true;
     this.httpService.login(params)
       .then(response => {
+        this.loading = false;
         if (response.code == 101) {
           this.userName.setErrors({
             userNameWrong: true

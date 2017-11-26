@@ -5,7 +5,7 @@ import {UEditorComponent} from "ngx-ueditor";
 @Injectable()
 export class HttpService {
 
-  static base_url = 'http://localhost/';
+  static base_url = 'http://219.242.68.33:81/';
 
   constructor(
     private http: HttpClient

@@ -5,41 +5,41 @@
       <table *ngIf="teamInfo != null" class="info-table">
         <tbody>
         <tr>
-          <td colspan="2" class="center">回访学校全称</td>
-          <td colspan="2" class="center">{{teamInfo['hfzx']}}</td>
-          <td class="center">所在省市</td>
-          <td class="center">{{teamInfo['sf']}}</td>
+          <td colspan="2" class="center item-title">回访学校全称</td>
+          <td colspan="2" class="">{{teamInfo['hfzx']}}</td>
+          <td class="center item-title">所在省市</td>
+          <td class="">{{teamInfo['sf']}}</td>
         </tr>
         <tr>
-          <td class="center" width="13%">成员</td>
-          <td class="center" width="13%">姓名</td>
-          <td class="center" width="20%">学号</td>
-          <td class="center" width="21%">身份证号</td>
-          <td class="center" width="13%">班级</td>
-          <td class="center" width="20%">手机号</td>
+          <td class="center item-title" width="13%">成员</td>
+          <td class="center item-title" width="13%">姓名</td>
+          <td class="center item-title" width="20%">学号</td>
+          <td class="center item-title" width="21%">身份证号</td>
+          <td class="center item-title" width="13%">班级</td>
+          <td class="center item-title" width="20%">手机号</td>
         </tr>
         <tr>
-          <td class="center">组长</td>
-          <td class="center">{{teamInfo['xm']}}</td>
-          <td class="center">{{teamInfo['xh']}}</td>
-          <td class="center">{{teamInfo['sfzh']}}</td>
-          <td class="center">{{teamInfo['bj']}}</td>
-          <td class="center">{{teamInfo['phone']}}</td>
+          <td class="center item-title">组长</td>
+          <td class="">{{teamInfo['xm']}}</td>
+          <td class="">{{teamInfo['xh']}}</td>
+          <td class="">{{teamInfo['sfzh']}}</td>
+          <td class="">{{teamInfo['bj']}}</td>
+          <td class="">{{teamInfo['phone']}}</td>
         </tr>
         <tr *ngFor="let member of teamInfo['members']">
-          <td class="center">组员</td>
-          <td class="center">{{member['xm']}}</td>
-          <td class="center">{{member['xh']}}</td>
-          <td class="center">{{member['sfzh']}}</td>
-          <td class="center">{{member['bj']}}</td>
-          <td class="center">{{member['phone']}}</td>
+          <td class="center item-title">组员</td>
+          <td class="">{{member['xm']}}</td>
+          <td class="">{{member['xh']}}</td>
+          <td class="">{{member['sfzh']}}</td>
+          <td class="">{{member['bj']}}</td>
+          <td class="">{{member['phone']}}</td>
         </tr>
         <tr>
-          <td class="center">活动计划</td>
+          <td class="center item-title">活动计划</td>
           <td colspan="5" [innerHtml]="hdjh"></td>
         </tr>
         <tr>
-          <td class="center">申报优势</td>
+          <td class="center item-title">申报优势</td>
           <td colspan="5" [innerHtml]="sbys"></td>
         </tr>
         </tbody>

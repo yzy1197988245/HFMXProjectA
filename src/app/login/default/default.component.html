@@ -15,15 +15,13 @@
       </mat-form-field>
     </form>
     <div style="margin-top: 20px; text-align: center">
-      <button mat-raised-button color="primary" (click)="login()" style="width: 100%; height: 50px; font-size: 18px">登录</button>
+      <p style="font-size: 18px; font-weight: bolder" *ngIf="loading">登陆中。。。</p>
+      <button mat-raised-button color="primary" (click)="login()" style="width: 100%; height: 50px; font-size: 18px" *ngIf="!loading" [disabled]="(userName.invalid || password.invalid) && userName.dirty && password.dirty">登录</button>
     </div>
   </div>
 </div>
 <div class="background-image" [@transform]="background1State" (@transform.done)="changeState1()" [style.z-index]="background1State == 'show'? -100: -101">
   <img [src]="currentBackground1" >
-  <!--<img [src]="backgroundImages[0]">-->
-  <!--<img [src]="backgroundImages[0]" hidden="true">-->
-  <!--<img src="assets/background/8.jpg" @test>-->
 </div>
 <div class="background-image" [@transform]="background2State" (@transform.done)="changeState2()" [style.z-index]="background2State == 'show'? -100: -101">
   <img [src]="currentBackground2" >
