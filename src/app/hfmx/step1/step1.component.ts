@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
@@ -7,6 +7,7 @@ import {MatDialog, MatDialogRef} from "@angular/material";
 import {AuthService} from "../../services/auth.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MessageService} from "../../services/message.service";
+import {UEditorComponent} from "ngx-ueditor";
 
 @Component({
   selector: 'app-step1',
@@ -23,6 +24,11 @@ export class Step1Component implements OnInit {
   preview = true;
   teamId;
   loading = true;
+  hdjhValue;
+  sbysValue;
+
+  @ViewChild('hdjh') hdjh: UEditorComponent;
+  @ViewChild('sbys') sbys: UEditorComponent;
 
   constructor(
     private httpService: HttpService,
@@ -38,8 +44,8 @@ export class Step1Component implements OnInit {
       phone: [ null, [ Validators.required ] ],
       hfzx: [ null, [ Validators.required ] ],
       sf: [ null, [ Validators.required ] ],
-      hdjh: [ null, [ Validators.required ] ],
-      sbys: [ null, [ Validators.required ] ]
+      hdjh: [ null ],
+      sbys: [ null ]
     });
   }
 
@@ -57,12 +63,27 @@ export class Step1Component implements OnInit {
               this.loading = false;
               this.members = response.data.members;
               this.teamForm.setValue(response.data.team);
+              this.displayContent();
             });
         } else {
           this.loading = false;
           this.preview = false;
         }
       });
+  }
+
+  saveContent(): void {
+    if(!this.preview) {
+      this.teamForm.controls['hdjh'].setValue(this.hdjh.Instance.getContent());
+      this.teamForm.controls['sbys'].setValue(this.sbys.Instance.getContent());
+    }
+  }
+
+  displayContent(): void {
+    if(!this.preview) {
+      this.sbysValue = this.teamForm.value.sbys;
+      this.hdjhValue = this.teamForm.value.hdjh;
+    }
   }
 
   searchZx(searchText) {
@@ -110,6 +131,11 @@ export class Step1Component implements OnInit {
   }
 
   commit(): void {
+    this.saveContent();
+    if (this.teamForm.value.sbys.length < 100 || this.teamForm.value.hdjh.length<100) {
+      this.messageService.showWarning('活动计划与申报优势的字数要求大于100！');
+      return;
+    }
     let params = {
       team: this.teamForm.value,
       members: this.members
@@ -131,6 +157,11 @@ export class Step1Component implements OnInit {
   }
 
   updateTeam(): void {
+    this.saveContent();
+    if (this.teamForm.value.sbys.length < 100 || this.teamForm.value.hdjh.length<100) {
+      this.messageService.showWarning('活动计划与申报优势的字数要求大于100！');
+      return;
+    }
     let params = {
       teamId: this.teamId,
       team: this.teamForm.value,
@@ -172,6 +203,7 @@ export class Step1Component implements OnInit {
       hdjh: '',
       sbys: ''
     });
+    this.displayContent();
   }
 }
 

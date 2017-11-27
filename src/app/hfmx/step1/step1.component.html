@@ -4,7 +4,7 @@
 <div *ngIf="!loading">
   <div *ngIf="teamId != null && preview" class="success">
     <p class="title">恭喜你报名成功!</p>
-    <p class="description">QQ群号:678890070</p>
+    <p class="description">请扫描下方二维码加入QQ群（678890070）获取更多信息！</p>
     <img src="assets/code.png">
   </div>
   <div *ngIf="preview" style="width: 1000px; margin: auto" >
@@ -77,15 +77,13 @@
           <tr>
             <td class="center item-title">活动计划</td>
             <td colspan="5" class="input">
-              <ueditor #hdjh [formControl]="teamForm.controls['hdjh']"></ueditor>
-              <p style="color: red" *ngIf="teamForm.controls['hdjh'].invalid">*请输入活动计划</p>
+              <ueditor #hdjh [ngModel]="hdjhValue"></ueditor>
             </td>
           </tr>
           <tr>
             <td class="center item-title">申报优势</td>
             <td colspan="5" class="input">
-              <ueditor #sbys [formControl]="teamForm.controls['sbys']"></ueditor>
-              <p style="color: red" *ngIf="teamForm.controls['sbys'].invalid">*请输入申报优势</p>
+              <ueditor #sbys [ngModel]="sbysValue"></ueditor>
             </td>
           </tr>
           </tbody>
@@ -95,8 +93,8 @@
   </div>
 
   <div style="text-align: center; margin-top: 10px" *ngIf="teamForm.value.xh == authService.userInfo.xh">
-    <button mat-button style="margin: 10px" color="primary" (click)="preview = true" [disabled]="teamForm.invalid" *ngIf="!preview">预览报名表</button>
-    <button mat-button style="margin: 10px" color="primary" (click)="preview = false" *ngIf="canEdit()">编辑</button>
+    <button mat-button style="margin: 10px" color="primary" (click)="saveContent(); preview = true" [disabled]="teamForm.invalid" *ngIf="!preview">预览报名表</button>
+    <button mat-button style="margin: 10px" color="primary" (click)="preview = false; displayContent()" *ngIf="canEdit()">编辑</button>
     <button mat-raised-button style="margin: 10px" color="primary" (click)="commit()" [disabled]="teamForm.invalid" *ngIf="teamId == null">提交</button>
     <button mat-raised-button style="margin: 10px" color="primary" (click)="updateTeam()" [disabled]="teamForm.invalid" *ngIf="teamId != null && !preview">提交更新</button>
     <button mat-raised-button style="margin: 10px" color="warn" (click)="reset()" *ngIf="!preview">重填报名表</button>

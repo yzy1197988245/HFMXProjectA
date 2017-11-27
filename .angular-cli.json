@@ -21,7 +21,11 @@
       "styles": [
         "styles.scss"
       ],
-      "scripts": [],
+      "scripts": [
+        "assets/ueditor/ueditor.config.js",
+        "assets/ueditor/ueditor.all.js",
+        "assets/ueditor/lang/zh-cn/zh-cn.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
