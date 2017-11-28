@@ -1,7 +1,8 @@
 <div class="alert-panel" *ngIf="messages.length > 0" @transform>
-  <div class="alert">
-    <alert *ngFor="let message of messages" [type]="message.type">
+  <div class="alert" *ngFor="let message of messages">
+    <alert [type]="message.type">
       <div [innerHtml]="message.content"></div>
     </alert>
   </div>
 </div>
+

@@ -20,10 +20,9 @@
     </div>
   </div>
 </div>
-<div class="background-image" [@transform]="background1State" (@transform.done)="changeState1()" [style.z-index]="background1State == 'show'? -100: -101">
+<div class="background-image" [@transform]="background1State" (@transform.done)="changeState1()" [style.z-index]="background1State == 'hide'? -100: -101">
   <img [src]="currentBackground1" >
 </div>
-<div class="background-image" [@transform]="background2State" (@transform.done)="changeState2()" [style.z-index]="background2State == 'show'? -100: -101">
+<div class="background-image" [@transform]="background2State" (@transform.done)="changeState2()" [style.z-index]="background2State == 'hide'? -100: -101">
   <img [src]="currentBackground2" >
 </div>
-

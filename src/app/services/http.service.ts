@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {UEditorComponent} from "ngx-ueditor";
 
 @Injectable()
 export class HttpService {
@@ -10,15 +9,6 @@ export class HttpService {
   constructor(
     private http: HttpClient
   ) { }
-
-  getUeditorContent(editor: UEditorComponent): string {
-    const htmlText = editor.Instance.getAllHtml() as string;
-    const index1 = htmlText.indexOf('<body >');
-    const index2 = htmlText.indexOf('</body>');
-    let string = htmlText.substr(index1 + 7, index2);
-    string = string.replace(/;background-color: white/g, '');
-    return string;
-  }
 
   login(params): Promise<any> {
     return this.http.post(HttpService.base_url + 'api/login', params)

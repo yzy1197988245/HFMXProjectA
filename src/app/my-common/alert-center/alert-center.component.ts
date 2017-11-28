@@ -9,11 +9,21 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
   animations: [
     trigger('transform', [
       transition(':enter', [
-        style({opacity: 0}),
-        animate(500, style({opacity: 1}))
+        style({'background-color': 'rgba(0, 0, 0, 0)'}),
+        animate(300)
       ]),
       transition(':leave', [
-        animate(500, style({opacity: 0}))
+        animate(300, style({'background-color': 'rgba(0, 0, 0, 0)'}))
+      ])
+    ]),
+
+    trigger('transform2', [
+      transition('void => *', [
+        style({'transform': 'translate(0, 100px)'}),
+        animate(200, style({'transform': 'translate(0, 0)'}))
+      ]),
+      transition(':leave', [
+        animate(200, style({'transform': 'translate(0, 100px)'}))
       ])
     ])
   ]
@@ -31,3 +41,4 @@ export class AlertCenterComponent implements OnInit {
     this.messages = this.messageService.messages;
   }
 }
+

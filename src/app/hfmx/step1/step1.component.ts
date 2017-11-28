@@ -41,7 +41,7 @@ export class Step1Component implements OnInit {
       xh: [ this.authService.userInfo['xh'], [ Validators.required ] ],
       xm: [ this.authService.userInfo['xm'], [ Validators.required ] ],
       bj: [ this.authService.userInfo['bj'], [ Validators.required ] ],
-      phone: [ null, [ Validators.required ] ],
+      phone: [ null, [ Validators.required, Validators.maxLength(11), Validators.minLength(11) ] ],
       hfzx: [ null, [ Validators.required ] ],
       sf: [ null, [ Validators.required ] ],
       hdjh: [ null ],
@@ -63,7 +63,7 @@ export class Step1Component implements OnInit {
               this.loading = false;
               this.members = response.data.members;
               this.teamForm.setValue(response.data.team);
-              this.displayContent();
+              this.showContent();
             });
         } else {
           this.loading = false;
@@ -79,7 +79,7 @@ export class Step1Component implements OnInit {
     }
   }
 
-  displayContent(): void {
+  showContent(): void {
     if(!this.preview) {
       this.sbysValue = this.teamForm.value.sbys;
       this.hdjhValue = this.teamForm.value.hdjh;
@@ -203,7 +203,7 @@ export class Step1Component implements OnInit {
       hdjh: '',
       sbys: ''
     });
-    this.displayContent();
+    this.showContent();
   }
 }
 

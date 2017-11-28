@@ -16,16 +16,10 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
       state('hide', style({opacity: 0, transform: 'scale(1, 1)'})),
       state('show', style({opacity: 1, transform: 'scale(1.1, 1.1)'})),
       transition('hide => show', [
-        animate('1s ease-in-out')
+        animate('2s')
       ]),
       transition('show => hide', [
-        animate('1s ease-in-out')
-      ])
-    ]),
-    trigger('test', [
-      transition(':enter', [
-        animate('5s ease-out', style({'transform': 'scale(1.3, 1.3)'})),
-        animate('5s ease-out', style({transform: 'scale(1, 1)'}))
+        animate('2s')
       ])
     ])
   ]
@@ -47,7 +41,9 @@ export class DefaultComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private domSanitizer: DomSanitizer,
-  ) { }
+  ) {
+
+  }
 
   ngOnInit() {
     this.userName = new FormControl(null, [Validators.required]);
@@ -58,6 +54,8 @@ export class DefaultComponent implements OnInit {
     }
     this.currentBackground1 = this.backgroundImages.shift();
     this.backgroundImages.push(this.currentBackground1);
+    this.currentBackground2 = this.backgroundImages.shift();
+    this.backgroundImages.push(this.currentBackground2);
     this.background1State = 'show';
     this.background2State = 'hide';
   }

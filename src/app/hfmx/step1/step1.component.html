@@ -52,7 +52,7 @@
             <td class="input">
               <mat-form-field>
                 <input [formControl]="teamForm.controls['phone']" matInput placeholder="联系电话">
-                <mat-error *ngIf="teamForm.controls['phone'].hasError('required')">请输入联系电话</mat-error>
+                <mat-error *ngIf="teamForm.controls['phone'].invalid">请输入正确的联系电话</mat-error>
               </mat-form-field>
             </td>
             <td>
@@ -86,6 +86,14 @@
               <ueditor #sbys [ngModel]="sbysValue"></ueditor>
             </td>
           </tr>
+          <tr>
+            <td colspan="6">
+              <p>注：</p>
+              <p>1、对按时完成宣讲活动并提交反馈材料的团队或个人颁发荣誉证书，并对表现优秀的团队或个人在综合素质评价中给予适当加分。</p>
+              <p>2、招生办公室提供宣讲ppt模板。</p>
+              <p>3、建议回访小组成员在本中学有学习经历的学校。</p>
+            </td>
+          </tr>
           </tbody>
         </table>
       </div>
@@ -94,7 +102,7 @@
 
   <div style="text-align: center; margin-top: 10px" *ngIf="teamForm.value.xh == authService.userInfo.xh">
     <button mat-button style="margin: 10px" color="primary" (click)="saveContent(); preview = true" [disabled]="teamForm.invalid" *ngIf="!preview">预览报名表</button>
-    <button mat-button style="margin: 10px" color="primary" (click)="preview = false; displayContent()" *ngIf="canEdit()">编辑</button>
+    <button mat-button style="margin: 10px" color="primary" (click)="preview = false; showContent()" *ngIf="canEdit()">编辑</button>
     <button mat-raised-button style="margin: 10px" color="primary" (click)="commit()" [disabled]="teamForm.invalid" *ngIf="teamId == null">提交</button>
     <button mat-raised-button style="margin: 10px" color="primary" (click)="updateTeam()" [disabled]="teamForm.invalid" *ngIf="teamId != null && !preview">提交更新</button>
     <button mat-raised-button style="margin: 10px" color="warn" (click)="reset()" *ngIf="!preview">重填报名表</button>
