@@ -6,6 +6,8 @@ import {RouterModule, Routes} from "@angular/router";
 import {MyCommonModule} from "../my-common/my-common.module";
 import { TeamComponent } from './team/team.component';
 import { TeamListComponent } from './team-list/team-list.component';
+import { CreateTeamComponent } from './create-team/create-team.component';
+import { UpdateTeamComponent } from './update-team/update-team.component';
 
 const routes: Routes = [
   {
@@ -39,7 +41,7 @@ const routes: Routes = [
     MyCommonModule,
     RouterModule.forChild(routes),
   ],
-  declarations: [DefaultComponent, Step1Component, AddMemberDialog, TeamComponent, TeamListComponent],
+  declarations: [DefaultComponent, Step1Component, AddMemberDialog, TeamComponent, TeamListComponent, CreateTeamComponent, UpdateTeamComponent],
   entryComponents: [AddMemberDialog]
 })
 export class HfmxModule { }
