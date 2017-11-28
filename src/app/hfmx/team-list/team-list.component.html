@@ -1,3 +1,42 @@
-<p>
-  team-list works!
-</p>
+<div>
+  <p>我负责的团队</p>
+  <table>
+    <thead>
+    <tr>
+      <th>序号</th>
+      <th>年份</th>
+      <th>回访中学</th>
+      <th>所在省份</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let team of teams1">
+      <td></td>
+      <td>{{team['nf']}}</td>
+      <td>{{team['hfzx']}}</td>
+      <td>{{team['sf']}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <p>我负责的团队</p>
+  <table>
+    <thead>
+    <tr>
+      <th>序号</th>
+      <th>年份</th>
+      <th>回访中学</th>
+      <th>所在省份</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let team of teams2">
+      <td></td>
+      <td>{{team['nf']}}</td>
+      <td>{{team['hfzx']}}</td>
+      <td>{{team['sf']}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
