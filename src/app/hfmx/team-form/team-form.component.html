@@ -1,0 +1,87 @@
+<div class="team-form-container">
+  <div style="padding: 20px">
+    <p class="title center">中国矿业大学（北京）寒假大学生回访高中母校宣传活动报名表</p>
+    <table *ngIf="teamForm != null" class="team-form">
+      <tbody>
+      <tr>
+        <td colspan="2" class="center item-title">回访学校全称</td>
+        <td colspan="2" class="input">
+          <mat-form-field>
+            <input [formControl]="teamForm.controls['hfzx']" matInput placeholder="回访学校全称" [matAutocomplete]="zx" (input)="searchZx($event.target.value)">
+            <mat-error *ngIf="teamForm.controls['hfzx'].invalid">请输入学校信息</mat-error>
+          </mat-form-field>
+        </td>
+        <td class="center item-title">所在省市</td>
+        <td class="input">
+          <mat-form-field>
+            <mat-select [formControl]="teamForm.controls['sf']" placeholder="所在省份">
+              <mat-option *ngFor="let sf of sfOptions" [value]="sf.NAME">
+                {{ sf.NAME }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="teamForm.controls['sf'].invalid">请选择省份</mat-error>
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td class="center item-title" width="10%">成员</td>
+        <td class="center item-title" width="15%">姓名</td>
+        <td class="center item-title" width="20%">学号</td>
+        <td class="center item-title" width="20%">班级</td>
+        <td class="center item-title" width="15%">手机号</td>
+        <td class="center item-title" width="20%">操作</td>
+      </tr>
+      <tr>
+        <td class="center item-title">组长</td>
+        <td>{{teamForm.value['xm']}}</td>
+        <td>{{teamForm.value['xh']}}</td>
+        <td>{{teamForm.value['bj']}}</td>
+        <td class="input">
+          <mat-form-field>
+            <input [formControl]="teamForm.controls['phone']" matInput placeholder="联系电话">
+            <mat-error *ngIf="teamForm.controls['phone'].invalid">请输入正确的联系电话</mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <!--<button mat-mini-fab (click)="deleteMember(member)" color="warn">删除</button>-->
+        </td>
+      </tr>
+      <tr *ngFor="let member of members">
+        <td class="center item-title">组员</td>
+        <td class="">{{member['xm']}}</td>
+        <td class="">{{member['xh']}}</td>
+        <td class="">{{member['bj']}}</td>
+        <td class="">{{member['phone']}}</td>
+        <td class="center">
+          <button mat-mini-fab (click)="deleteMember(member)" color="warn" >删除</button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="6" class="center">
+          <button mat-raised-button color="primary" (click)="addMember()">添加成员</button>
+        </td>
+      </tr>
+      <tr>
+        <td class="center item-title">活动计划</td>
+        <td colspan="5" class="input">
+          <ueditor #hdjh [ngModel]="hdjhValue"></ueditor>
+        </td>
+      </tr>
+      <tr>
+        <td class="center item-title">申报优势</td>
+        <td colspan="5" class="input">
+          <ueditor #sbys [ngModel]="sbysValue"></ueditor>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="6">
+          <p>注：</p>
+          <p>1、对按时完成宣讲活动并提交反馈材料的团队或个人颁发荣誉证书，并对表现优秀的团队或个人在综合素质评价中给予适当加分。</p>
+          <p>2、招生办公室提供宣讲ppt模板。</p>
+          <p>3、建议回访小组成员在本中学有学习经历的学校。</p>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

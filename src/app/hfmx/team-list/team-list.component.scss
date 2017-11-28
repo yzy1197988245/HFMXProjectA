@@ -1,0 +1,35 @@
+.team-list-container {
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+}
+
+.title {
+  color: #3f51b5;
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+.team-list {
+  width: 100%;
+  thead {
+    tr {
+      border-bottom: 1px solid black;
+      th {
+        padding: 5px;
+        font-weight: bolder;
+      }
+    }
+  }
+
+  tbody {
+    td {
+      padding: 8px;
+    }
+
+    tr:hover, .selected {
+      color: #3f51b5;
+    }
+  }
+}

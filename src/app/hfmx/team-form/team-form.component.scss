@@ -1,0 +1,40 @@
+.team-form-container {
+
+  .team-form {
+    width: 100%;
+    border-collapse: collapse;
+
+    table, thead, tbody, tr, td, th {
+      border: 1px solid #3f51b5;
+    }
+
+    td {
+      padding: 10px;
+    }
+
+    .item-title {
+      color: #3f51b5;
+      font-weight: bolder;
+    }
+
+    mat-form-field {
+      width: 100%;
+    }
+
+    .input {
+       background: lightgrey;
+     }
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .title {
+    color: #3f51b5;
+    font-size: 20px;
+    padding: 20px;
+    font-weight: bolder;
+  }
+
+}

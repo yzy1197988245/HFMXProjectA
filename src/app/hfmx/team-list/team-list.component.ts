@@ -26,5 +26,4 @@ export class TeamListComponent implements OnInit {
         }
       })
   }
-
 }

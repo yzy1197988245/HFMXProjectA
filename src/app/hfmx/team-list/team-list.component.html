@@ -1,6 +1,6 @@
-<div>
-  <p>我负责的团队</p>
-  <table>
+<div class="team-list-container">
+  <p class="title">我负责的团队</p>
+  <table class="team-list">
     <thead>
     <tr>
       <th>序号</th>
@@ -10,7 +10,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let team of teams1">
+    <tr *ngFor="let team of teams1" role="button">
       <td></td>
       <td>{{team['nf']}}</td>
       <td>{{team['hfzx']}}</td>
@@ -19,9 +19,9 @@
     </tbody>
   </table>
 </div>
-<div>
-  <p>我负责的团队</p>
-  <table>
+<div class="team-list-container">
+  <p class="title">我参加的团队</p>
+  <table class="team-list">
     <thead>
     <tr>
       <th>序号</th>
@@ -31,7 +31,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let team of teams2">
+    <tr *ngFor="let team of teams2" role="button">
       <td></td>
       <td>{{team['nf']}}</td>
       <td>{{team['hfzx']}}</td>
