@@ -1,7 +1,7 @@
 <div class="team-form-container">
   <div style="padding: 20px">
     <p class="title center">中国矿业大学（北京）寒假大学生回访高中母校宣传活动报名表</p>
-    <table *ngIf="teamForm != null" class="team-form">
+    <table class="team-form">
       <tbody>
       <tr>
         <td colspan="2" class="center item-title">回访学校全称</td>
@@ -10,6 +10,11 @@
             <input [formControl]="teamForm.controls['hfzx']" matInput placeholder="回访学校全称" [matAutocomplete]="zx" (input)="searchZx($event.target.value)">
             <mat-error *ngIf="teamForm.controls['hfzx'].invalid">请输入学校信息</mat-error>
           </mat-form-field>
+          <mat-autocomplete #zx="matAutocomplete">
+            <mat-option *ngFor="let option of zxOptions" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete>
         </td>
         <td class="center item-title">所在省市</td>
         <td class="input">
@@ -64,13 +69,13 @@
       <tr>
         <td class="center item-title">活动计划</td>
         <td colspan="5" class="input">
-          <ueditor #hdjh [ngModel]="hdjhValue"></ueditor>
+          <ueditor #hdjh [(ngModel)]="hdjhValue"></ueditor>
         </td>
       </tr>
       <tr>
         <td class="center item-title">申报优势</td>
         <td colspan="5" class="input">
-          <ueditor #sbys [ngModel]="sbysValue"></ueditor>
+          <ueditor #sbys [(ngModel)]="sbysValue"></ueditor>
         </td>
       </tr>
       <tr>

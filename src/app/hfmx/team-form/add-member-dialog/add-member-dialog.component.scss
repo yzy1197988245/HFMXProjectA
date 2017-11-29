@@ -1,0 +1,10 @@
+.my-container {
+  display: flex;
+  flex-direction: column;
+}
+.actions {
+  text-align: center;
+  button {
+    margin: 10px;
+  }
+}

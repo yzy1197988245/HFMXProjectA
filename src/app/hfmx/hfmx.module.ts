@@ -10,6 +10,7 @@ import { CreateTeamComponent } from './create-team/create-team.component';
 import { UpdateTeamComponent } from './update-team/update-team.component';
 import { TeamInfoComponent } from './team-info/team-info.component';
 import { TeamFormComponent } from './team-form/team-form.component';
+import { AddMemberDialogComponent } from './team-form/add-member-dialog/add-member-dialog.component';
 
 const routes: Routes = [
   {
@@ -54,7 +55,7 @@ const routes: Routes = [
     MyCommonModule,
     RouterModule.forChild(routes),
   ],
-  declarations: [DefaultComponent, Step1Component, AddMemberDialog, TeamComponent, TeamListComponent, CreateTeamComponent, UpdateTeamComponent, TeamInfoComponent, TeamFormComponent],
-  entryComponents: [AddMemberDialog]
+  declarations: [DefaultComponent, Step1Component, AddMemberDialog, TeamComponent, TeamListComponent, CreateTeamComponent, UpdateTeamComponent, TeamInfoComponent, TeamFormComponent, AddMemberDialogComponent],
+  entryComponents: [AddMemberDialog, AddMemberDialogComponent]
 })
 export class HfmxModule { }

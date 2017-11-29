@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {TeamFormComponent} from "../team-form/team-form.component";
 
 @Component({
   selector: 'app-create-team',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateTeamComponent implements OnInit {
 
+  @ViewChild('teamForm') teamForm: TeamFormComponent;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  commit(): void {
+    console.log(this.teamForm.getFormValue());
+  }
+
+  reset(): void {
+    this.teamForm.resetForm();
   }
 
 }

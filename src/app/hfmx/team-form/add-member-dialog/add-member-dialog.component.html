@@ -1,0 +1,21 @@
+<div class="my-container">
+  <mat-form-field>
+    <input [formControl]="userInput" matInput placeholder="学号" [matAutocomplete]="xs" (input)="searchXs($event.target.value)">
+    <mat-error *ngIf="memberForm.controls['xm'].invalid || memberForm.controls['xh'].invalid">请选择学生</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="手机号" [formControl]="memberForm.controls['phone']" type="tel">
+    <mat-error *ngIf="memberForm.controls['phone'].invalid">请输入手机号</mat-error>
+  </mat-form-field>
+</div>
+
+<div class="actions">
+  <button mat-button color="primary" (click)="close()">取消</button>
+  <button mat-raised-button color="primary" (click)="commit()" [disabled]="memberForm.invalid">确定</button>
+</div>
+
+<mat-autocomplete #xs="matAutocomplete" (optionSelected)="studentSelected($event.option.value)">
+  <mat-option *ngFor="let option of xsOptions" [value]="memberString(option)">
+    {{memberString(option)}}
+  </mat-option>
+</mat-autocomplete>
