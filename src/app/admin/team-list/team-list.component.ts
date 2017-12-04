@@ -11,13 +11,23 @@ export class TeamListComponent implements OnInit {
   teamList;
   currentTeam;
   showDetail = false;
+  xyList = ['资源', '地测', '化环', '机电', '管理', '力建', '理', '文法'];
+  currentXy;
 
   constructor(
     private httpService: HttpService
   ) { }
 
   ngOnInit() {
-    this.httpService.adminGetTeamList()
+    this.getList();
+  }
+
+  getList(): void {
+    let params = {
+      xy: this.currentXy
+    };
+    console.log(params);
+    this.httpService.adminGetTeamList(params)
       .then(response => {
         this.teamList = response.data;
       })
@@ -36,7 +46,11 @@ export class TeamListComponent implements OnInit {
 
   detailClosed(team): void {
     this.currentTeam = team;
-    // console.log(team);
     this.showDetail = false;
   }
+
+  exportList(): void {
+    window.open(HttpService.base_url + 'api/team/admin-export-teams-to-excel');
+  }
 }
+

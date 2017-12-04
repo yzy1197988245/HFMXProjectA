@@ -4,7 +4,7 @@ import { HttpClient } from "@angular/common/http";
 @Injectable()
 export class HttpService {
 
-  static base_url = 'http://localhost/';
+  static base_url = 'http://219.242.68.33:81/';
 
   constructor(
     private http: HttpClient
@@ -55,10 +55,13 @@ export class HttpService {
       .toPromise();
   }
 
-  adminGetTeamList(): Promise<any> {
-    return this.http.post(HttpService.base_url + 'api/team/admin-team-list', {})
+
+  adminGetTeamList(params): Promise<any> {
+    console.log(params);
+    return this.http.post(HttpService.base_url + 'api/team/admin-team-list', params)
       .toPromise();
   }
+
 
   adminGetTeamInfo(teamId): Promise<any> {
     return this.http.post(HttpService.base_url + 'api/team/admin-team-info', {'teamId': teamId})

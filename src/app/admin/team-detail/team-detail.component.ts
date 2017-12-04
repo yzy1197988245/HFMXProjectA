@@ -84,6 +84,10 @@ export class TeamDetailComponent implements OnInit {
     this.getTeamInfo();
   }
 
+  canNext(): boolean {
+    return this.currentIndex < this.teamList.length - 1;
+  }
+
   previous(): void {
     if (this.currentIndex > 0) {
       this.currentIndex --;
@@ -92,6 +96,10 @@ export class TeamDetailComponent implements OnInit {
     }
     this.currentTeam = this.teamList[this.currentIndex];
     this.getTeamInfo();
+  }
+
+  canPrevious(): boolean {
+    return this.currentIndex > 0;
   }
 
   close(): void {

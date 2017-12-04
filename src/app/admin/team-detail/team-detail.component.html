@@ -6,9 +6,9 @@
         <tbody>
         <tr>
           <td colspan="2" class="center item-title">回访学校全称</td>
-          <td colspan="2" class="">{{teamInfo['hfzx']}}</td>
+          <td colspan="2" class="center">{{teamInfo['hfzx']}}</td>
           <td class="center item-title">所在省市</td>
-          <td class="">{{teamInfo['sf']}}</td>
+          <td class="center">{{teamInfo['sf']}}</td>
         </tr>
         <tr>
           <td class="center item-title" width="13%">成员</td>
@@ -47,7 +47,7 @@
     </div>
   </div>
   <button mat-mini-fab="" (click)="close()" class="close-button">关闭</button>
-  <button mat-fab class="left-button" color="primary" (click)="previous()">上一个</button>
-  <button mat-fab class="right-button" color="primary" (click)="next()">下一个</button>
+  <button mat-fab class="left-button" color="primary" (click)="previous()" [disabled]="!canPrevious()">上一个</button>
+  <button mat-fab class="right-button" color="primary" (click)="next()" [disabled]="!canNext()">下一个</button>
 </div>
 

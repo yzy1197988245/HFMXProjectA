@@ -2,11 +2,19 @@
 
 <div class="team-list-container">
   <div>
-    <button mat-raised-button="" color="primary">导出汇总表</button>
+    <button mat-raised-button="" color="primary" (click)="exportList()">导出汇总表</button>
+    <mat-form-field>
+      <mat-select placeholder="学院" [(ngModel)]="currentXy" (selectionChange)="getList()">
+        <mat-option *ngFor="let xy of xyList" [value]="xy">
+          {{ xy }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
   <table class="team-list">
     <thead>
     <tr>
+      <th>序号</th>
       <th>年份</th>
       <th>学院</th>
       <th>队长姓名</th>
@@ -17,11 +25,12 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let team of teamList" role="button" (click)="previewTeamDetail(team)" [class.selected]="isSelected(team)">
+    <tr *ngFor="let team of teamList; let i = index" role="button" (click)="previewTeamDetail(team)" [class.selected]="isSelected(team)">
+      <td>{{ i + 1 }}</td>
       <td>{{team['nf']}}</td>
-      <td></td>
+      <td>{{team['xy']}}</td>
       <td>{{team['dz']}}</td>
-      <td></td>
+      <td>{{team['xh']}}</td>
       <td>{{team['hfzx']}}</td>
       <td>{{team['sf']}}</td>
       <td>{{team['phone']}}</td>
@@ -29,4 +38,3 @@
     </tbody>
   </table>
 </div>
-
