@@ -13,6 +13,7 @@ import { TestComponent } from './test/test.component';
 import {Ng2Webstorage} from "ngx-webstorage";
 import {AlertModule} from "ngx-bootstrap";
 import {MessageService} from "./services/message.service";
+import {NotificationService} from "./services/notification.service";
 
 const routes: Routes = [
   {
@@ -74,7 +75,8 @@ const routes: Routes = [
   providers: [
     HttpService,
     AuthService,
-    MessageService
+    MessageService,
+    NotificationService
     // MessageService,
   ],
   bootstrap: [AppComponent]

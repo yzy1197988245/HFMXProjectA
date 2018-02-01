@@ -6,6 +6,7 @@ import * as md5 from "md5";
 import {AuthService} from "../../services/auth.service";
 import {DomSanitizer} from "@angular/platform-browser";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {NotificationService} from "../../services/notification.service";
 
 @Component({
   selector: 'app-default',
@@ -41,6 +42,7 @@ export class DefaultComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private domSanitizer: DomSanitizer,
+    private notificationService: NotificationService
   ) {
 
   }
