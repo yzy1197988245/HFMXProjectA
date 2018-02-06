@@ -11,6 +11,7 @@ import {MessageService} from "../../services/message.service";
 export class StudentListComponent implements OnInit {
 
   progress = 0;
+  studentList;
 
   constructor(
     private httpService: HttpService,
@@ -20,18 +21,24 @@ export class StudentListComponent implements OnInit {
 
   ngOnInit() {
     this.notificationService.receiveMessage((message) => {
-      console.log(message);
       this.progress = message.data;
-    })
+    });
+    this.getStudentList();
   }
 
   syncStudentInfo(): void {
-    console.log('test');
     this.httpService.adminSyncStudentInfo()
       .then(res => {
         if (res.code == 200) {
           this.messageService.showSuccess(res.message);
         }
+      })
+  }
+
+  getStudentList(): void {
+    this.httpService.adminGetStudentList()
+      .then(res => {
+        this.studentList = res.data;
       })
   }
 }

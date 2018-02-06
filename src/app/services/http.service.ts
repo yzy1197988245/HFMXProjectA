@@ -19,7 +19,7 @@ export class HttpService {
   handleError(reason): any {
     if (reason.status == 401) {
       this.messageService.showWarning('没有权限!');
-      this.router.navigate(['/', 'login']);
+      //this.router.navigate(['/', 'login']);
     }
     return Promise.reject(reason);
   }
@@ -130,6 +130,14 @@ export class HttpService {
 
   adminSyncStudentInfo(): Promise<any> {
     return this.http.get(HttpService.base_url + 'api/student/admin-sync-student-info')
+      .toPromise()
+      .catch((error) => {
+        return this.handleError(error);
+      });
+  }
+
+  adminGetStudentList(): Promise<any> {
+    return this.http.get(HttpService.base_url + 'api/student/admin-get-student-list')
       .toPromise()
       .catch((error) => {
         return this.handleError(error);
