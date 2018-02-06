@@ -99,21 +99,26 @@ export class DefaultComponent implements OnInit {
     this.loading = true;
     this.httpService.login(params)
       .then(response => {
-        console.log(response);
         this.loading = false;
         this.authService.token = response.token;
         this.authService.isLoggedIn = true;
         this.authService.guard = response.guard;
-        switch (response.guard) {
-          case 'api_user':
-            this.router.navigate(['/', 'admin', 'team-list']);
-            break;
-          case 'api_student':
-            this.router.navigate(['/', 'hfmx', 'step1']);
-            break;
-          default:
-            break;
-        }
+
+        this.httpService.getUserInfo()
+          .then(res => {
+            this.authService.userInfo = res;
+            switch (this.authService.guard) {
+              case 'api_user':
+                this.router.navigate(['/', 'admin', 'team-list']);
+                break;
+              case 'api_student':
+                this.router.navigate(['/', 'hfmx', 'step1']);
+                break;
+              default:
+                break;
+            }
+          });
+
       })
       .catch(response => {
         this.loading = false;

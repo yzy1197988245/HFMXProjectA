@@ -79,11 +79,10 @@ const routes: Routes = [
       useClass: AuthInterceptor,
       multi: true,
     },
+    MessageService,
     HttpService,
     AuthService,
-    MessageService,
     NotificationService
-    // MessageService,
   ],
   bootstrap: [AppComponent]
 })

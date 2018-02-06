@@ -15,7 +15,7 @@
       </mat-form-field>
     </form>
     <div style="margin-top: 20px; text-align: center">
-      <p style="font-size: 18px; font-weight: bolder" *ngIf="loading">登陆中。。。</p>
+      <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
       <button mat-raised-button color="primary" (click)="login()" style="width: 100%; height: 50px; font-size: 18px" *ngIf="!loading" [disabled]="(userName.invalid || password.invalid)">登录</button>
     </div>
   </div>
