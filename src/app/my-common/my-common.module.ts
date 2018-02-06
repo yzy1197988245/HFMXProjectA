@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import {
   MatAutocompleteModule, MatButtonModule, MatCardModule, MatDialogModule, MatExpansionModule, MatFormFieldModule,
   MatGridListModule,
-  MatInputModule, MatListModule, MatProgressSpinnerModule, MatSelectModule, MatSlideToggleModule, MatSnackBarModule,
+  MatInputModule, MatListModule, MatProgressBarModule, MatProgressSpinnerModule, MatSelectModule, MatSlideToggleModule,
+  MatSnackBarModule,
   MatToolbar, MatToolbarModule
 } from "@angular/material";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -35,7 +36,8 @@ import { AlertCenterComponent } from './alert-center/alert-center.component';
     MatSnackBarModule,
     MatToolbarModule,
     MatProgressSpinnerModule,
-    AlertModule
+    AlertModule,
+    MatProgressBarModule,
   ],
   declarations: [TopNavComponent, AlertCenterComponent],
   exports: [
@@ -62,6 +64,7 @@ import { AlertCenterComponent } from './alert-center/alert-center.component';
     MatToolbarModule,
     MatProgressSpinnerModule,
     AlertModule,
+    MatProgressBarModule
   ],
   providers: [
     // MessageService

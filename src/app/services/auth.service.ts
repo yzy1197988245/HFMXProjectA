@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {CanActivate, CanActivateChild, Router} from "@angular/router";
 import {LocalStorage, SessionStorage} from "ngx-webstorage";
+import {isNullOrUndefined} from "util";
 
 
 @Injectable()
@@ -8,6 +9,8 @@ export class AuthService implements CanActivate, CanActivateChild{
 
   @SessionStorage() userInfo;
   @SessionStorage() isLoggedIn;
+  @SessionStorage() token;
+  @SessionStorage() guard;
 
   constructor(
     private router: Router,
@@ -26,5 +29,12 @@ export class AuthService implements CanActivate, CanActivateChild{
       this.router.navigate(['/', 'login']);
     }
     return this.isLoggedIn;
+  }
+
+  getAuthorizationHeader(): any {
+    if (!isNullOrUndefined(this.token))
+      return this.token.token_type + ' ' + this.token.access_token;
+    else
+      return '';
   }
 }

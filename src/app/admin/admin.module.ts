@@ -5,6 +5,8 @@ import {MyCommonModule} from "../my-common/my-common.module";
 import {RouterModule, Routes} from "@angular/router";
 import { TeamListComponent } from './team-list/team-list.component';
 import { TeamDetailComponent } from './team-detail/team-detail.component';
+import { StudentListComponent } from './student-list/student-list.component';
+import { AppConfigComponent } from './app-config/app-config.component';
 
 const routes: Routes = [
   {
@@ -14,6 +16,10 @@ const routes: Routes = [
       {
         path: 'team-list',
         component: TeamListComponent
+      },
+      {
+        path: 'student-list',
+        component: StudentListComponent
       },
       {
         path: '',
@@ -30,6 +36,6 @@ const routes: Routes = [
     CommonModule,
     MyCommonModule,
   ],
-  declarations: [DefaultComponent, TeamListComponent, TeamDetailComponent]
+  declarations: [DefaultComponent, TeamListComponent, TeamDetailComponent, StudentListComponent, AppConfigComponent]
 })
 export class AdminModule { }

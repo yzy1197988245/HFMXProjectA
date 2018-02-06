@@ -1,4 +1,4 @@
-<div class="login-container">
+<div class="login-container" (keydown)="keyDown($event)">
   <div class="logo"><img src="assets/logo.gif"></div>
   <div class="login-panel">
     <p style="text-align: center; font-size: 25px;">用户登录</p>
@@ -6,17 +6,17 @@
       <mat-form-field class="item">
         <input [formControl]="userName" matInput placeholder="学号/用户名" required>
         <mat-error *ngIf="userName.hasError('required')">请输入学号/用户名</mat-error>
-        <mat-error *ngIf="userName.hasError('userNameWrong')">学号/用户名错误</mat-error>
+        <mat-error *ngIf="userName.hasError('response')">{{ userName.getError('response') }}</mat-error>
       </mat-form-field>
       <mat-form-field class="item">
         <input [formControl]="password" matInput type="password" placeholder="密码" required>
         <mat-error *ngIf="password.hasError('required')">请输入密码</mat-error>
-        <mat-error *ngIf="password.hasError('passwordWrong')">密码错误</mat-error>
+        <mat-error *ngIf="password.hasError('response')">{{ password.getError('response') }}</mat-error>
       </mat-form-field>
     </form>
     <div style="margin-top: 20px; text-align: center">
       <p style="font-size: 18px; font-weight: bolder" *ngIf="loading">登陆中。。。</p>
-      <button mat-raised-button color="primary" (click)="login()" style="width: 100%; height: 50px; font-size: 18px" *ngIf="!loading" [disabled]="(userName.invalid || password.invalid) && userName.dirty && password.dirty">登录</button>
+      <button mat-raised-button color="primary" (click)="login()" style="width: 100%; height: 50px; font-size: 18px" *ngIf="!loading" [disabled]="(userName.invalid || password.invalid)">登录</button>
     </div>
   </div>
 </div>

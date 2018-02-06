@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {RouterModule, Routes} from "@angular/router";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {HttpService} from "./services/http.service";
 import {UEditorModule} from "ngx-ueditor";
 import {AuthService} from "./services/auth.service";
@@ -14,6 +14,7 @@ import {Ng2Webstorage} from "ngx-webstorage";
 import {AlertModule} from "ngx-bootstrap";
 import {MessageService} from "./services/message.service";
 import {NotificationService} from "./services/notification.service";
+import {AuthInterceptor} from "./services/auth-interceptor";
 
 const routes: Routes = [
   {
@@ -73,6 +74,11 @@ const routes: Routes = [
     AlertModule.forRoot(),
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
     HttpService,
     AuthService,
     MessageService,

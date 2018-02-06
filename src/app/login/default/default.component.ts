@@ -41,8 +41,7 @@ export class DefaultComponent implements OnInit {
     private httpService: HttpService,
     private router: Router,
     private authService: AuthService,
-    private domSanitizer: DomSanitizer,
-    private notificationService: NotificationService
+    private domSanitizer: DomSanitizer
   ) {
 
   }
@@ -94,26 +93,45 @@ export class DefaultComponent implements OnInit {
 
   login() {
     let params = {
-      userName: this.userName.value,
+      username: this.userName.value,
       password: md5(this.password.value)
     };
     this.loading = true;
     this.httpService.login(params)
       .then(response => {
+        console.log(response);
         this.loading = false;
-        if (response.code == 101) {
-          this.userName.setErrors({
-            userNameWrong: true
-          })
-        } else if (response.code == 102) {
-          this.password.setErrors({
-            passwordWrong: true
-          })
-        } else {
-          this.authService.isLoggedIn = true;
-          this.authService.userInfo = response.data;
-          this.router.navigate([response.data.redirect]);
+        this.authService.token = response.token;
+        this.authService.isLoggedIn = true;
+        this.authService.guard = response.guard;
+        switch (response.guard) {
+          case 'api_user':
+            this.router.navigate(['/', 'admin', 'team-list']);
+            break;
+          case 'api_student':
+            this.router.navigate(['/', 'hfmx', 'step1']);
+            break;
+          default:
+            break;
         }
       })
+      .catch(response => {
+        this.loading = false;
+        if (response.status == 422) {
+          let errors = response.error.errors;
+          if (errors.hasOwnProperty('username')) {
+            this.userName.setErrors({'response': errors.username[0]})
+          }
+          if (errors.hasOwnProperty('password')) {
+            this.password.setErrors({'response': errors.password[0]})
+          }
+        }
+      })
+  }
+
+  keyDown(event) {
+    if (event.code == 'Enter' && this.userName.valid && this.password.valid) {
+      this.login();
+    }
   }
 }

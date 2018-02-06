@@ -11,10 +11,11 @@ export class NotificationService {
       cluster: 'ap1',
       encrypted: true
     });
+    socket.logToConsole = true;
     this.channel = socket.subscribe('test');
   }
 
-  receiveMessage(callback: (message) => {}): void {
+  receiveMessage(callback): void {
     this.channel.bind('schedule.updated', callback);
   }
 }

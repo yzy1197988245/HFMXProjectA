@@ -26,7 +26,6 @@ export class TeamListComponent implements OnInit {
     let params = {
       xy: this.currentXy
     };
-    console.log(params);
     this.httpService.adminGetTeamList(params)
       .then(response => {
         this.teamList = response.data;
