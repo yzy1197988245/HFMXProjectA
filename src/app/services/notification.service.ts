@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import Pusher from "pusher-js";
+import * as Pusher from "pusher-js"
 
 @Injectable()
 export class NotificationService {
@@ -7,7 +7,7 @@ export class NotificationService {
   channel;
 
   constructor() {
-    let socket = new Pusher('ea3de6c68fe66743c711', {
+    const socket = new Pusher('ea3de6c68fe66743c711', {
       cluster: 'ap1',
       encrypted: true
     });

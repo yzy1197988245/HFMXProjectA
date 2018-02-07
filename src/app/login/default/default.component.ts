@@ -2,11 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {HttpService} from "../../services/http.service";
 import {FormControl, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import * as md5 from "md5";
+import * as md5 from "md5"
 import {AuthService} from "../../services/auth.service";
 import {DomSanitizer} from "@angular/platform-browser";
 import {animate, state, style, transition, trigger} from "@angular/animations";
-import {NotificationService} from "../../services/notification.service";
 
 @Component({
   selector: 'app-default',
