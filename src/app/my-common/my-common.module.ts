@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import {
   MatAutocompleteModule, MatButtonModule, MatCardModule, MatDialogModule, MatExpansionModule, MatFormFieldModule,
   MatGridListModule,
-  MatInputModule, MatListModule, MatProgressBarModule, MatProgressSpinnerModule, MatSelectModule, MatSlideToggleModule,
+  MatInputModule, MatListModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatSelectModule,
+  MatSlideToggleModule,
   MatSnackBarModule,
   MatToolbar, MatToolbarModule
 } from "@angular/material";
@@ -13,6 +14,7 @@ import {CommonModule} from "@angular/common";
 import {MessageService} from "../services/message.service";
 import {AlertModule} from "ngx-bootstrap/alert";
 import { AlertCenterComponent } from './alert-center/alert-center.component';
+import {ButtonModule} from "primeng/button";
 
 @NgModule({
   imports: [
@@ -38,6 +40,8 @@ import { AlertCenterComponent } from './alert-center/alert-center.component';
     MatProgressSpinnerModule,
     AlertModule,
     MatProgressBarModule,
+    MatPaginatorModule,
+    ButtonModule
   ],
   declarations: [TopNavComponent, AlertCenterComponent],
   exports: [
@@ -64,7 +68,9 @@ import { AlertCenterComponent } from './alert-center/alert-center.component';
     MatToolbarModule,
     MatProgressSpinnerModule,
     AlertModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatPaginatorModule,
+    ButtonModule
   ],
   providers: [
     // MessageService

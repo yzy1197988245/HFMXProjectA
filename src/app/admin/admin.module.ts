@@ -17,12 +17,20 @@ const routes: Routes = [
     component: DefaultComponent,
     children: [
       {
+        path: 'app-config',
+        component: AppConfigComponent
+      },
+      {
         path: 'team-list',
         component: TeamListComponent
       },
       {
         path: 'student-list',
         component: StudentListComponent
+      },
+      {
+        path: 'user-list',
+        component: UserListComponent
       },
       {
         path: '',
@@ -37,7 +45,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
-    MyCommonModule,
+    MyCommonModule
   ],
   declarations: [DefaultComponent, TeamListComponent, TeamDetailComponent, StudentListComponent, AppConfigComponent, StudentDialogComponent, UserListComponent, UserDialogComponent]
 })

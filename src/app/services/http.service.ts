@@ -64,6 +64,22 @@ export class HttpService {
       });
   }
 
+  nfOptions(): Promise<any> {
+    return this.http.get(HttpService.base_url + 'api/select-option/nf')
+      .toPromise()
+      .catch((error) => {
+        return this.handleError(error);
+      });
+  }
+
+  xyOptions(): Promise<any> {
+    return this.http.get(HttpService.base_url + 'api/select-option/xy')
+      .toPromise()
+      .catch((error) => {
+        return this.handleError(error);
+      });
+  }
+
   checkMember(memberXh): Promise<any> {
     return this.http.post(HttpService.base_url + 'api/hfmx/check-member', {'xh': memberXh})
       .toPromise()

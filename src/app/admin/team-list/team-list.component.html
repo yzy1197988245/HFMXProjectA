@@ -2,19 +2,51 @@
 
 <div class="team-list-container">
   <div>
-    <button mat-raised-button="" color="primary" (click)="exportList()">导出汇总表</button>
     <mat-form-field>
-      <mat-select placeholder="学院" [(ngModel)]="currentXy" (selectionChange)="getList()">
-        <mat-option *ngFor="let xy of xyList" [value]="xy">
+      <mat-select [formControl]="queryParams.controls['nf']" placeholder="年份" (selectionChange)="currentPage=1;getList()">
+        <mat-option [value]="null">全部</mat-option>
+        <mat-option *ngFor="let nf of nfOptions" [value]="nf">
+          {{ nf }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select [formControl]="queryParams.controls['xy']" placeholder="学院" (selectionChange)="currentPage=1;getList()">
+        <mat-option [value]="null">全部</mat-option>
+        <mat-option *ngFor="let xy of xyOptions" [value]="xy">
           {{ xy }}
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <mat-form-field>
+      <mat-select [formControl]="queryParams.controls['sf']" placeholder="省份" (selectionChange)="currentPage=1;getList()">
+        <mat-option [value]="null">全部</mat-option>
+        <mat-option *ngFor="let sf of sfOptions" [value]="sf.NAME">
+          {{ sf.NAME }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input [formControl]="queryParams.controls['dz']" matInput="" placeholder="队长姓名">
+    </mat-form-field>
+    <mat-form-field>
+      <input [formControl]="queryParams.controls['xh']" matInput="" placeholder="队长学号">
+    </mat-form-field>
+    <p-button (click)="getList()" label="搜索"></p-button>
+    <button pButton="" (click)="exportList()" label="导出汇总表" class="ui-button-success"></button>
+  </div>
+  <div>
+    <mat-paginator [length]="totalCount"
+                   [pageIndex]="currentPage - 1"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)="pageChanged($event)"
+    ></mat-paginator>
   </div>
   <table class="team-list">
     <thead>
     <tr>
-      <th>序号</th>
+      <!--<th>序号</th>-->
       <th>年份</th>
       <th>学院</th>
       <th>队长姓名</th>
@@ -22,11 +54,12 @@
       <th>回访中学名称</th>
       <th>所在省份</th>
       <th>联系电话</th>
+      <th>审核通过</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let team of teamList; let i = index" role="button" (click)="previewTeamDetail(team)" [class.selected]="isSelected(team)">
-      <td>{{ i + 1 }}</td>
+    <tr *ngFor="let team of teamList" role="button" (click)="previewTeamDetail(team)" [class.selected]="isSelected(team)">
+      <!--<td>{{ i + 1 }}</td>-->
       <td>{{team['nf']}}</td>
       <td>{{team['xy']}}</td>
       <td>{{team['dz']}}</td>
@@ -37,4 +70,12 @@
     </tr>
     </tbody>
   </table>
+  <div>
+    <mat-paginator [length]="totalCount"
+                   [pageIndex]="currentPage - 1"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)="pageChanged($event)"
+    ></mat-paginator>
+  </div>
 </div>
