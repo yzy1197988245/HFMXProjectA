@@ -15,6 +15,7 @@ import {MessageService} from "../services/message.service";
 import {AlertModule} from "ngx-bootstrap/alert";
 import { AlertCenterComponent } from './alert-center/alert-center.component';
 import {ButtonModule} from "primeng/button";
+import { LoadingCoverComponent } from './loading-cover/loading-cover.component';
 
 @NgModule({
   imports: [
@@ -43,11 +44,12 @@ import {ButtonModule} from "primeng/button";
     MatPaginatorModule,
     ButtonModule
   ],
-  declarations: [TopNavComponent, AlertCenterComponent],
+  declarations: [TopNavComponent, AlertCenterComponent, LoadingCoverComponent],
   exports: [
     // CommonModule,
     TopNavComponent,
     AlertCenterComponent,
+    LoadingCoverComponent,
 
     FormsModule,
     ReactiveFormsModule,

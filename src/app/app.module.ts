@@ -15,6 +15,7 @@ import {AlertModule} from "ngx-bootstrap";
 import {MessageService} from "./services/message.service";
 import {NotificationService} from "./services/notification.service";
 import {AuthInterceptor} from "./services/auth-interceptor";
+import {LoadingService} from "./services/loading.service";
 
 const routes: Routes = [
   {
@@ -82,7 +83,8 @@ const routes: Routes = [
     MessageService,
     HttpService,
     AuthService,
-    NotificationService
+    NotificationService,
+    LoadingService
   ],
   bootstrap: [AppComponent]
 })
