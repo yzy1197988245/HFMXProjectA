@@ -10,6 +10,7 @@ import { AppConfigComponent } from './app-config/app-config.component';
 import { StudentDialogComponent } from './student-dialog/student-dialog.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserDialogComponent } from './user-dialog/user-dialog.component';
+import { StatisticsDataComponent } from './statistics-data/statistics-data.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,6 @@ const routes: Routes = [
     CommonModule,
     MyCommonModule
   ],
-  declarations: [DefaultComponent, TeamListComponent, TeamDetailComponent, StudentListComponent, AppConfigComponent, StudentDialogComponent, UserListComponent, UserDialogComponent]
+  declarations: [DefaultComponent, TeamListComponent, TeamDetailComponent, StudentListComponent, AppConfigComponent, StudentDialogComponent, UserListComponent, UserDialogComponent, StatisticsDataComponent]
 })
 export class AdminModule { }
