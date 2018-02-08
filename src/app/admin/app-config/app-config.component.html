@@ -1,0 +1,78 @@
+<div class="my-form">
+  <div class="my-form-field">
+    <label>报名开始时间</label>
+    <div class="my-form-control">
+      <p-calendar
+        [locale]="calendarConfig"
+        dateFormat="yy-mm-dd"
+        [showTime]="true"
+        [hourFormat]="24"
+        [readonlyInput]="true"
+        [formControl]="configForm.controls['enrollStartDate']"
+        dataType="string"
+      ></p-calendar>
+    </div>
+  </div>
+  <div class="my-form-field">
+    <label>报名结束时间</label>
+    <div class="my-form-control">
+      <p-calendar
+        [locale]="calendarConfig"
+        dateFormat="yy-mm-dd"
+        [showTime]="true"
+        [hourFormat]="24"
+        [readonlyInput]="true"
+        [formControl]="configForm.controls['enrollEndDate']"
+        dataType="string"
+      ></p-calendar>
+    </div>
+  </div>
+  <div class="my-form-field">
+    <label>回执填报开始时间</label>
+    <div class="my-form-control">
+      <p-calendar
+        [locale]="calendarConfig"
+        dateFormat="yy-mm-dd"
+        [showTime]="true"
+        [hourFormat]="24"
+        [readonlyInput]="true"
+        [formControl]="configForm.controls['returnStartDate']"
+        dataType="string"
+      ></p-calendar>
+    </div>
+  </div>
+  <div class="my-form-field">
+    <label>回执填报结束时间</label>
+    <div class="my-form-control">
+      <p-calendar
+        [locale]="calendarConfig"
+        dateFormat="yy-mm-dd"
+        [showTime]="true"
+        [hourFormat]="24"
+        [readonlyInput]="true"
+        [formControl]="configForm.controls['returnEndDate']"
+        dataType="string"
+      ></p-calendar>
+    </div>
+  </div>
+  <div class="my-form-field">
+    <label>交流群号</label>
+    <div class="my-form-control">
+      <input [formControl]="configForm.controls['exchangeCode']" type="text" pInputText="">
+    </div>
+  </div>
+  <div class="my-form-field">
+    <label class="top">交流群二维码</label>
+    <div class="my-form-control">
+      <div>
+        <input #image type="file" accept="image/*">
+        <button (click)="uploadExchangeCodeImage(image)" pButton="" label="上传"></button>
+      </div>
+      <img [src]="imageSrc">
+    </div>
+  </div>
+  <div class="center">
+    <button (click)="updateConfigs()" pButton="" label="提交" class="ui-button-success" [disabled]="configForm.invalid"></button>
+  </div>
+</div>
+
