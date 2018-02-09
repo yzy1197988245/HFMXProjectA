@@ -48,8 +48,8 @@ export class DefaultComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userName = new FormControl(null, [Validators.required]);
-    this.password = new FormControl(null, [Validators.required]);
+    this.userName = new FormControl('', [Validators.required]);
+    this.password = new FormControl('', [Validators.required]);
     for (let i = 1; i < 11; i++) {
       let urlString = 'assets/background/' + i + '.jpg';
       this.backgroundImages.push(this.domSanitizer.bypassSecurityTrustUrl(urlString));
@@ -104,7 +104,6 @@ export class DefaultComponent implements OnInit {
         this.authService.token = response.token;
         this.authService.isLoggedIn = true;
         this.authService.guard = response.guard;
-        this.httpService.updateRequestOptions();
         this.httpService.getAppConfig()
           .then(res => {
             this.authService.appConfig = res;
@@ -142,9 +141,9 @@ export class DefaultComponent implements OnInit {
   }
 
   keyDown(event) {
-    if (event.code == 'Enter' && this.userName.valid && this.password.valid) {
+    console.log(event);
+    if (event.key == 'Enter' && this.userName.valid && this.password.valid) {
       this.login();
     }
   }
 }
-

@@ -78,7 +78,12 @@ const routes: Routes = [
     MessageService,
     HttpService,
     NotificationService,
-    LoadingService
+    LoadingService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent]
 })

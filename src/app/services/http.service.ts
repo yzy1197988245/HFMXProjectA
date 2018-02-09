@@ -1,31 +1,18 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {MessageService} from "./message.service";
-import {AuthService} from "./auth.service";
 
 @Injectable()
 export class HttpService {
 
   static base_url = 'http://localhost/';
-  public requestHeaders;
-  public requestOptions;
 
   constructor(
     private http: HttpClient,
     private router: Router,
-    private messageService: MessageService,
-    private auth: AuthService
+    private messageService: MessageService
   ) {
-    this.updateRequestOptions();
-  }
-
-  updateRequestOptions(): void {
-    this.requestHeaders = new HttpHeaders();
-    if (this.auth.isLoggedIn) {
-      this.requestHeaders = this.requestHeaders.set('Authorization', this.auth.getAuthorizationHeader()).set('guard', this.auth.guard);
-    }
-    this.requestOptions = {headers: this.requestHeaders};
   }
 
   handleError(reason): any {
@@ -44,7 +31,7 @@ export class HttpService {
   }
 
   getUserInfo(): Promise<any> {
-    return this.http.get(HttpService.base_url + 'api/user-info', this.requestOptions)
+    return this.http.get(HttpService.base_url + 'api/user-info')
       .toPromise()
       .catch((error) => {
         return this.handleError(error);
@@ -52,7 +39,7 @@ export class HttpService {
   }
 
   getAppConfig(): Promise<any> {
-    return this.http.get(HttpService.base_url + 'api/get-app-config', this.requestOptions)
+    return this.http.get(HttpService.base_url + 'api/get-app-config')
       .toPromise()
       .catch((error) => {
         return this.handleError(error);
@@ -60,7 +47,7 @@ export class HttpService {
   }
 
   updateAppConfig(configs): Promise<any> {
-    return this.http.post(HttpService.base_url + 'api/update-app-config', configs, this.requestOptions)
+    return this.http.post(HttpService.base_url + 'api/update-app-config', configs)
       .toPromise()
       .catch((error) => {
         return this.handleError(error);
@@ -68,7 +55,7 @@ export class HttpService {
   }
 
   uploadExchangeCodeImage(image): Promise<any> {
-    return this.http.post(HttpService.base_url + 'api/update-exchange-code-image', image, this.requestOptions)
+    return this.http.post(HttpService.base_url + 'api/update-exchange-code-image', image)
       .toPromise()
       .catch((error) => {
         return this.handleError(error);
@@ -76,7 +63,7 @@ export class HttpService {
   }
 
   zxOptions(searchText): Promise<any> {
-    return this.http.post(HttpService.base_url + 'api/select-option/byzx', {'searchText': searchText}, this.requestOptions)
+    return this.http.post(HttpService.base_url + 'api/select-option/byzx', {'searchText': searchText})
       .toPromise()
       .catch((error) => {
         return this.handleError(error);
@@ -84,7 +71,7 @@ export class HttpService {
   }
 
   xsOptions(searchText): Promise<any> {
-    return this.http.post(HttpService.base_url + 'api/select-option/xsxx', {'searchText': searchText}, this.requestOptions)
+    return this.http.post(HttpService.base_url + 'api/select-option/xsxx', {'searchText': searchText})
       .toPromise()
       .catch((error) => {
         return this.handleError(error);
@@ -92,7 +79,7 @@ export class HttpService {
   }
 
   sfOptions(): Promise<any> {
-    return this.http.get(HttpService.base_url + 'api/select-option/sysf', this.requestOptions)
+    return this.http.get(HttpService.base_url + 'api/select-option/sysf')
       .toPromise()
       .catch((error) => {
         return this.handleError(error);
@@ -100,7 +87,7 @@ export class HttpService {
   }
 
   nfOptions(): Promise<any> {
-    return this.http.get(HttpService.base_url + 'api/select-option/nf', this.requestOptions)
+    return this.http.get(HttpService.base_url + 'api/select-option/nf')
       .toPromise()
       .catch((error) => {
         return this.handleError(error);
@@ -108,7 +95,7 @@ export class HttpService {
   }
 
   xyOptions(): Promise<any> {
-    return this.http.get(HttpService.base_url + 'api/select-option/xy', this.requestOptions)
+    return this.http.get(HttpService.base_url + 'api/select-option/xy')
       .toPromise()
       .catch((error) => {
         return this.handleError(error);
@@ -116,7 +103,7 @@ export class HttpService {
   }
 
   checkMember(memberXh): Promise<any> {
-    return this.http.post(HttpService.base_url + 'api/hfmx/check-member', {'xh': memberXh}, this.requestOptions)
+    return this.http.post(HttpService.base_url + 'api/hfmx/check-member', {'xh': memberXh})
       .toPromise()
       .catch((error) => {
         return this.handleError(error);
@@ -124,7 +111,7 @@ export class HttpService {
   }
 
   createTeam(params): Promise<any> {
-    return this.http.post(HttpService.base_url + 'api/hfmx/create-team', params, this.requestOptions)
+    return this.http.post(HttpService.base_url + 'api/hfmx/create-team', params)
       .toPromise()
       .catch((error) => {
         return this.handleError(error);
@@ -132,7 +119,7 @@ export class HttpService {
   }
 
   getTeamDetail(teamId): Promise<any> {
-    return this.http.post(HttpService.base_url + 'api/hfmx/team-detail', {'teamId': teamId}, this.requestOptions)
+    return this.http.post(HttpService.base_url + 'api/hfmx/team-detail', {'teamId': teamId})
       .toPromise()
       .catch((error) => {
         return this.handleError(error);
@@ -140,7 +127,7 @@ export class HttpService {
   }
 
   updateTeam(params): Promise<any> {
-    return this.http.post(HttpService.base_url + 'api/hfmx/update-team', params, this.requestOptions)
+    return this.http.post(HttpService.base_url + 'api/hfmx/update-team', params)
       .toPromise()
       .catch((error) => {
         return this.handleError(error);
@@ -148,7 +135,7 @@ export class HttpService {
   }
 
   deleteTeam(teamId): Promise<any> {
-    return this.http.post(HttpService.base_url + 'api/hfmx/delete-team', {'teamId': teamId}, this.requestOptions)
+    return this.http.post(HttpService.base_url + 'api/hfmx/delete-team', {'teamId': teamId})
       .toPromise()
       .catch((error) => {
         return this.handleError(error);
@@ -156,7 +143,7 @@ export class HttpService {
   }
 
   adminGetTeamList(params): Promise<any> {
-    return this.http.post(HttpService.base_url + 'api/team/admin-team-list', params, this.requestOptions)
+    return this.http.post(HttpService.base_url + 'api/team/admin-team-list', params)
       .toPromise()
       .catch((error) => {
         return this.handleError(error);
@@ -164,7 +151,7 @@ export class HttpService {
   }
 
   adminGetTeamInfo(teamId): Promise<any> {
-    return this.http.post(HttpService.base_url + 'api/team/admin-team-info', {'teamId': teamId}, this.requestOptions)
+    return this.http.post(HttpService.base_url + 'api/team/admin-team-info', {'teamId': teamId})
       .toPromise()
       .catch((error) => {
         return this.handleError(error);
@@ -172,7 +159,7 @@ export class HttpService {
   }
 
   studentGetTeamList(xh): Promise<any> {
-    return this.http.post(HttpService.base_url + 'api/team/student-team-list', {'xh': xh}, this.requestOptions)
+    return this.http.post(HttpService.base_url + 'api/team/student-team-list', {'xh': xh})
       .toPromise()
       .catch((error) => {
         return this.handleError(error);
@@ -180,7 +167,7 @@ export class HttpService {
   }
 
   adminSyncStudentInfo(): Promise<any> {
-    return this.http.get(HttpService.base_url + 'api/student/admin-sync-student-info', this.requestOptions)
+    return this.http.get(HttpService.base_url + 'api/student/admin-sync-student-info')
       .toPromise()
       .catch((error) => {
         return this.handleError(error);
@@ -188,7 +175,7 @@ export class HttpService {
   }
 
   adminGetStudentList(params): Promise<any> {
-    return this.http.post(HttpService.base_url + 'api/student/admin-get-student-list', params, this.requestOptions)
+    return this.http.post(HttpService.base_url + 'api/student/admin-get-student-list', params)
       .toPromise()
       .catch((error) => {
         return this.handleError(error);
@@ -196,11 +183,12 @@ export class HttpService {
   }
 
   adminGetStatisticData(): Promise<any> {
-    return this.http.get(HttpService.base_url + 'api/statistic/get-data', this.requestOptions)
+    return this.http.get(HttpService.base_url + 'api/statistic/get-data')
       .toPromise()
       .catch((error) => {
         return this.handleError(error);
       });
   }
 }
+
 
