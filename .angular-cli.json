@@ -24,7 +24,8 @@
       "scripts": [
         "assets/ueditor/ueditor.config.js",
         "assets/ueditor/ueditor.all.js",
-        "assets/ueditor/lang/zh-cn/zh-cn.js"
+        "assets/ueditor/lang/zh-cn/zh-cn.js",
+        "../node_modules/chart.js/dist/Chart.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

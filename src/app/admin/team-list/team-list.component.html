@@ -1,5 +1,8 @@
 <app-team-detail [teamList]="teamList" [currentTeam]="currentTeam" *ngIf="showDetail" (closed)="detailClosed($event)"></app-team-detail>
 <div class="team-list-container">
+  <div class="operation">
+    <button pButton="" (click)="exportList()" label="导出汇总表" class="ui-button-success"></button>
+  </div>
   <div>
     <mat-form-field>
       <mat-select [formControl]="queryParams.controls['nf']" placeholder="年份" (selectionChange)="currentPage=1;getList()">
@@ -31,8 +34,7 @@
     <mat-form-field>
       <input [formControl]="queryParams.controls['xh']" matInput="" placeholder="队长学号">
     </mat-form-field>
-    <p-button (click)="getList()" label="搜索"></p-button>
-    <button pButton="" (click)="exportList()" label="导出汇总表" class="ui-button-success"></button>
+    <button (click)="getList()" pButton="" label="搜索"></button>
   </div>
   <div>
     <mat-paginator [length]="totalCount"
@@ -53,11 +55,11 @@
       <th>回访中学名称</th>
       <th>所在省份</th>
       <th>联系电话</th>
-      <th>审核通过</th>
+      <th>审核状态</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let team of teamList" role="button" (click)="previewTeamDetail(team)" [class.selected]="isSelected(team)">
+    <tr *ngFor="let team of teamList" (click)="previewTeamDetail(team)" [class.selected]="isSelected(team)">
       <!--<td>{{ i + 1 }}</td>-->
       <td>{{team['nf']}}</td>
       <td>{{team['xy']}}</td>
@@ -66,6 +68,7 @@
       <td>{{team['hfzx']}}</td>
       <td>{{team['sf']}}</td>
       <td>{{team['phone']}}</td>
+      <td>{{team['status'] == 0? '审核中': team['status'] == 1? '审核通过' : '审核不通过'}}</td>
     </tr>
     </tbody>
   </table>
@@ -78,3 +81,4 @@
     ></mat-paginator>
   </div>
 </div>
+

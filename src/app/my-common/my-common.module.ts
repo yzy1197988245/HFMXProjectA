@@ -5,17 +5,19 @@ import {
   MatInputModule, MatListModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatSelectModule,
   MatSlideToggleModule,
   MatSnackBarModule,
-  MatToolbar, MatToolbarModule
+  MatToolbarModule
 } from "@angular/material";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {UEditorModule} from "ngx-ueditor";
 import { TopNavComponent } from './top-nav/top-nav.component';
 import {CommonModule} from "@angular/common";
-import {MessageService} from "../services/message.service";
 import {AlertModule} from "ngx-bootstrap/alert";
 import { AlertCenterComponent } from './alert-center/alert-center.component';
 import {ButtonModule} from "primeng/button";
 import { LoadingCoverComponent } from './loading-cover/loading-cover.component';
+import {ChartModule} from "primeng/chart";
+import {CalendarModule} from "primeng/calendar";
+import {InputTextModule} from "primeng/inputtext";
 
 @NgModule({
   imports: [
@@ -42,7 +44,10 @@ import { LoadingCoverComponent } from './loading-cover/loading-cover.component';
     AlertModule,
     MatProgressBarModule,
     MatPaginatorModule,
-    ButtonModule
+    ButtonModule,
+    ChartModule,
+    CalendarModule,
+    InputTextModule
   ],
   declarations: [TopNavComponent, AlertCenterComponent, LoadingCoverComponent],
   exports: [
@@ -72,7 +77,10 @@ import { LoadingCoverComponent } from './loading-cover/loading-cover.component';
     AlertModule,
     MatProgressBarModule,
     MatPaginatorModule,
-    ButtonModule
+    ButtonModule,
+    ChartModule,
+    CalendarModule,
+    InputTextModule
   ],
   providers: [
     // MessageService

@@ -52,11 +52,10 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     MyCommonModule,
 
-    // GrowlModule,
     RouterModule.forRoot(routes, {useHash: true}),
     UEditorModule.forRoot({
       path: '/assets/ueditor/',
@@ -75,14 +74,9 @@ const routes: Routes = [
     AlertModule.forRoot(),
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-    },
+    AuthService,
     MessageService,
     HttpService,
-    AuthService,
     NotificationService,
     LoadingService
   ],
@@ -90,3 +84,5 @@ const routes: Routes = [
 })
 
 export class AppModule { }
+
+

@@ -11,6 +11,7 @@ export class AuthService implements CanActivate, CanActivateChild{
   @SessionStorage() isLoggedIn;
   @SessionStorage() token;
   @SessionStorage() guard;
+  @SessionStorage() appConfig;
 
   constructor(
     private router: Router,

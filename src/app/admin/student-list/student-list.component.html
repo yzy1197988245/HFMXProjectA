@@ -1,22 +1,52 @@
-<button mat-raised-button="" color="primary" (click)="syncStudentInfo()">同步学生数据！</button>
-<mat-progress-bar mode="determinate" [value]="progress" ></mat-progress-bar>
+<!--<button mat-raised-button="" color="primary" >同步学生数据！</button>-->
+<!--<mat-progress-bar mode="determinate" [value]="progress" ></mat-progress-bar>-->
 
-<table>
-  <thead>
+<div class="student-list-container">
+  <div class="operation">
+    <button (click)="createStudent()" pButton label="添加学生" class="ui-button-success"></button>
+    <button (click)="syncStudentInfo()" pButton label="同步学生数据" class="ui-button-danger"></button>
+  </div>
+  <div>
+    <mat-form-field>
+      <input [formControl]="queryParams.controls['xm']" matInput="" placeholder="姓名">
+    </mat-form-field>
+    <mat-form-field>
+      <input [formControl]="queryParams.controls['xh']" matInput="" placeholder="学号">
+    </mat-form-field>
+    <button (click)="searchStudent()" pButton="" label="查询"></button>
+  </div>
+  <div>
+    <mat-paginator [length]="totalCount"
+                   [pageIndex]="currentPage - 1"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)="pageChanged($event)"
+    ></mat-paginator>
+  </div>
+  <table class="student-list">
+    <thead>
     <tr>
-      <th>id</th><th>学号</th><th>姓名</th><th>学院</th><th>班级</th><th>专业</th><th>毕业中学</th><th>联系电话</th>
+      <th>学号</th><th>姓名</th><th>学院</th><th>班级</th><th>专业</th><th>毕业中学</th>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
     <tr *ngFor="let student of studentList">
-      <td>{{ student.id }}</td>
       <td>{{ student.xh }}</td>
       <td>{{ student.xm }}</td>
       <td>{{ student.xy }}</td>
       <td>{{ student.bj }}</td>
       <td>{{ student.zy }}</td>
       <td>{{ student.byzx }}</td>
-      <td>{{ student.phone }}</td>
     </tr>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+  <div>
+    <mat-paginator [length]="totalCount"
+                   [pageIndex]="currentPage - 1"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)="pageChanged($event)"
+    ></mat-paginator>
+  </div>
+</div>
+

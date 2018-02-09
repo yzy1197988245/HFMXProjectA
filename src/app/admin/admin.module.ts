@@ -34,6 +34,10 @@ const routes: Routes = [
         component: UserListComponent
       },
       {
+        path: 'statistics-data',
+        component: StatisticsDataComponent
+      },
+      {
         path: '',
         redirectTo: 'team-list',
         pathMatch: 'full'
