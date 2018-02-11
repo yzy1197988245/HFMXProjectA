@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpService} from "../../services/http.service";
-import {MatPaginatorIntl} from "@angular/material";
 import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
@@ -25,20 +24,14 @@ export class TeamListComponent implements OnInit {
 
   constructor(
     private httpService: HttpService,
-    private matPaginatorInt: MatPaginatorIntl,
     private formBuilder: FormBuilder
   ) {
-    matPaginatorInt.nextPageLabel = '下一页';
-    matPaginatorInt.previousPageLabel = '上一页';
-    matPaginatorInt.itemsPerPageLabel = '每页显示';
-    matPaginatorInt.firstPageLabel = '第一页';
-    matPaginatorInt.lastPageLabel = '最后一页';
     this.queryParams = formBuilder.group({
-      nf: [null],
-      xy: [null],
-      sf: [null],
-      dz: [null],
-      xh: [null],
+      nf: [''],
+      xy: [''],
+      sf: [''],
+      dz: [''],
+      xh: [''],
       page: [1],
       pageSize: [15]
     })
@@ -65,7 +58,6 @@ export class TeamListComponent implements OnInit {
       })
   }
 
-
   previewTeamDetail(currentTeam):void {
     this.currentTeam = currentTeam;
     this.showDetail = true;
@@ -87,8 +79,8 @@ export class TeamListComponent implements OnInit {
   }
 
   pageChanged(event): void {
-    this.queryParams.controls['page'].setValue(event.pageIndex + 1);
-    this.queryParams.controls['pageSize'].setValue(event.pageSize);
+    this.queryParams.controls['page'].setValue(event.page);
+    this.queryParams.controls['pageSize'].setValue(event.itemsPerPage);
     this.getList();
   }
 }

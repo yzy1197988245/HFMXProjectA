@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpService} from "../../services/http.service";
-import {NotificationService} from "../../services/notification.service";
 import {MessageService} from "../../services/message.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {MatDialog, MatPaginatorIntl} from "@angular/material";
+import {MatDialog} from "@angular/material/dialog";
 import {StudentDialogComponent} from "../student-dialog/student-dialog.component";
 import {ConfirmationService} from "primeng/api";
 
@@ -27,15 +26,9 @@ export class StudentListComponent implements OnInit {
     // private notificationService: NotificationService,
     private messageService: MessageService,
     private formBuilder: FormBuilder,
-    private matPaginatorInt: MatPaginatorIntl,
     private matDialog: MatDialog,
     private confirmationService: ConfirmationService
   ) {
-    matPaginatorInt.nextPageLabel = '下一页';
-    matPaginatorInt.previousPageLabel = '上一页';
-    matPaginatorInt.itemsPerPageLabel = '每页显示';
-    matPaginatorInt.firstPageLabel = '第一页';
-    matPaginatorInt.lastPageLabel = '最后一页';
     this.queryParams = formBuilder.group({
       'page': [this.currentPage],
       'pageSize': [this.pageSize],
@@ -69,6 +62,7 @@ export class StudentListComponent implements OnInit {
   }
 
   searchStudent(): void {
+    this.currentPage = 1;
     this.getStudentList();
   }
 
@@ -77,15 +71,15 @@ export class StudentListComponent implements OnInit {
     this.httpService.adminGetStudentList(queryParams)
       .then(res => {
         this.studentList = res.data;
-        this.totalCount = res.total;
         this.currentPage = res.current_page;
         this.pageSize = res.per_page;
+        this.totalCount = res.total;
       })
   }
 
   pageChanged(event): void {
-    this.queryParams.controls['page'].setValue(event.pageIndex + 1);
-    this.queryParams.controls['pageSize'].setValue(event.pageSize);
+    this.queryParams.controls['page'].setValue(event.page);
+    this.queryParams.controls['pageSize'].setValue(event.itemsPerPage);
     this.getStudentList();
   }
 
@@ -111,4 +105,3 @@ export class StudentListComponent implements OnInit {
     })
   }
 }
-

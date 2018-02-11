@@ -11,12 +11,12 @@ import {AuthService} from "./services/auth.service";
 import {MyCommonModule} from "./my-common/my-common.module";
 import { TestComponent } from './test/test.component';
 import {Ng2Webstorage} from "ngx-webstorage";
-import {AlertModule} from "ngx-bootstrap";
+import {AlertModule} from "ngx-bootstrap/alert";
+import {PaginationModule} from "ngx-bootstrap/pagination";
 import {MessageService} from "./services/message.service";
 import {NotificationService} from "./services/notification.service";
 import {AuthInterceptor} from "./services/auth-interceptor";
 import {LoadingService} from "./services/loading.service";
-import {MAT_DIALOG_DEFAULT_OPTIONS} from "@angular/material";
 import {ConfirmationService} from "primeng/api";
 
 const routes: Routes = [
@@ -74,6 +74,7 @@ const routes: Routes = [
     }),
     Ng2Webstorage,
     AlertModule.forRoot(),
+    PaginationModule.forRoot()
   ],
   providers: [
     AuthService,
@@ -86,7 +87,7 @@ const routes: Routes = [
       useClass: AuthInterceptor,
       multi: true,
     },
-    ConfirmationService
+    ConfirmationService,
     // {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
   ],
   bootstrap: [AppComponent]

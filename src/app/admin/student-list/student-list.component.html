@@ -1,6 +1,3 @@
-<!--<button mat-raised-button="" color="primary" >同步学生数据！</button>-->
-<!--<mat-progress-bar mode="determinate" [value]="progress" ></mat-progress-bar>-->
-<!--<app-student-dialog *ngIf="isShowStudentDetail"></app-student-dialog>-->
 <div class="student-list-container">
   <div class="operation">
     <button (click)="createStudent()" pButton label="添加学生" class="ui-button-success"></button>
@@ -13,16 +10,7 @@
     <mat-form-field>
       <input [formControl]="queryParams.controls['xh']" matInput="" placeholder="学号">
     </mat-form-field>
-    <button (click)="searchStudent()" pButton="" label="查询"></button>
-  </div>
-  <div>
-    <mat-paginator [length]="totalCount"
-                   [pageIndex]="currentPage - 1"
-                   [pageSize]="pageSize"
-                   [pageSizeOptions]="pageSizeOptions"
-                   (page)="pageChanged($event)"
-                   [showFirstLastButtons]="true"
-    ></mat-paginator>
+    <button (click)="searchStudent()" pButton="" label="搜索"></button>
   </div>
   <table class="student-list">
     <thead>
@@ -42,13 +30,20 @@
     </tbody>
   </table>
   <div>
-    <mat-paginator [length]="totalCount"
-                   [pageIndex]="currentPage - 1"
-                   [pageSize]="pageSize"
-                   [pageSizeOptions]="pageSizeOptions"
-                   (page)="pageChanged($event)"
-                   [showFirstLastButtons]="true"
-    ></mat-paginator>
+    <pagination
+      [(ngModel)]="currentPage"
+      [totalItems]="totalCount"
+      [itemsPerPage]="pageSize"
+      [rotate]="true"
+      [boundaryLinks]="true"
+      [maxSize]="10"
+      previousText="上一页"
+      nextText="下一页"
+      firstText="第一页"
+      lastText="最后一页"
+      class="justify-content-center"
+      (pageChanged)="pageChanged($event)"
+    ></pagination>
   </div>
 </div>
 

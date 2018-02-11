@@ -36,15 +36,6 @@
     </mat-form-field>
     <button (click)="getList()" pButton="" label="搜索"></button>
   </div>
-  <div>
-    <mat-paginator [length]="totalCount"
-                   [pageIndex]="currentPage - 1"
-                   [pageSize]="pageSize"
-                   [pageSizeOptions]="pageSizeOptions"
-                   (page)="pageChanged($event)"
-                   [showFirstLastButtons]="true"
-    ></mat-paginator>
-  </div>
   <table class="team-list">
     <thead>
     <tr>
@@ -74,13 +65,20 @@
     </tbody>
   </table>
   <div>
-    <mat-paginator [length]="totalCount"
-                   [pageIndex]="currentPage - 1"
-                   [pageSize]="pageSize"
-                   [pageSizeOptions]="pageSizeOptions"
-                   (page)="pageChanged($event)"
-                   [showFirstLastButtons]="true"
-    ></mat-paginator>
+    <pagination
+      [(ngModel)]="currentPage"
+      [totalItems]="totalCount"
+      [itemsPerPage]="pageSize"
+      [rotate]="true"
+      [boundaryLinks]="true"
+      [maxSize]="10"
+      previousText="上一页"
+      nextText="下一页"
+      firstText="第一页"
+      lastText="最后一页"
+      class="justify-content-center"
+      (pageChanged)="pageChanged($event)"
+    ></pagination>
   </div>
 </div>
 

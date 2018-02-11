@@ -19,6 +19,7 @@ import {ChartModule} from "primeng/chart";
 import {CalendarModule} from "primeng/calendar";
 import {InputTextModule} from "primeng/inputtext";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {PaginationModule} from "ngx-bootstrap/pagination";
 
 @NgModule({
   imports: [
@@ -49,7 +50,8 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
     ChartModule,
     CalendarModule,
     InputTextModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    PaginationModule
   ],
   declarations: [TopNavComponent, AlertCenterComponent, LoadingCoverComponent],
   exports: [
@@ -83,7 +85,8 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
     ChartModule,
     CalendarModule,
     InputTextModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    PaginationModule
   ],
   providers: [
     // MessageService
