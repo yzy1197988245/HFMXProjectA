@@ -31,6 +31,8 @@ export class TeamListComponent implements OnInit {
     matPaginatorInt.nextPageLabel = '下一页';
     matPaginatorInt.previousPageLabel = '上一页';
     matPaginatorInt.itemsPerPageLabel = '每页显示';
+    matPaginatorInt.firstPageLabel = '第一页';
+    matPaginatorInt.lastPageLabel = '最后一页';
     this.queryParams = formBuilder.group({
       nf: [null],
       xy: [null],

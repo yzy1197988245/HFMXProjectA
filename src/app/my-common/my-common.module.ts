@@ -18,6 +18,7 @@ import { LoadingCoverComponent } from './loading-cover/loading-cover.component';
 import {ChartModule} from "primeng/chart";
 import {CalendarModule} from "primeng/calendar";
 import {InputTextModule} from "primeng/inputtext";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
 
 @NgModule({
   imports: [
@@ -47,7 +48,8 @@ import {InputTextModule} from "primeng/inputtext";
     ButtonModule,
     ChartModule,
     CalendarModule,
-    InputTextModule
+    InputTextModule,
+    ConfirmDialogModule
   ],
   declarations: [TopNavComponent, AlertCenterComponent, LoadingCoverComponent],
   exports: [
@@ -80,7 +82,8 @@ import {InputTextModule} from "primeng/inputtext";
     ButtonModule,
     ChartModule,
     CalendarModule,
-    InputTextModule
+    InputTextModule,
+    ConfirmDialogModule
   ],
   providers: [
     // MessageService

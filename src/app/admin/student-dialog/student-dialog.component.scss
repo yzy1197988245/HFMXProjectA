@@ -1,0 +1,40 @@
+.my-form {
+  //width: 600px;
+  //background: white;
+  margin: auto;
+  .my-form-field {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: center;
+
+    >label {
+      width: 150px;
+      display: block;
+      margin-right: 20px;
+    }
+
+    .my-form-control {
+      //width: 330px;
+
+      input[type=file] {
+        display: inline;
+      }
+    }
+
+    .top {
+      align-self: flex-start;
+    }
+  }
+
+  .center {
+    text-align: center;
+
+    //button {
+    //  width: 100px;
+    //  height: 40px;
+    //}
+  }
+}
+

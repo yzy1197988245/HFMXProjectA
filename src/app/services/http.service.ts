@@ -18,7 +18,10 @@ export class HttpService {
   handleError(reason): any {
     if (reason.status == 401) {
       this.messageService.showWarning('没有权限!');
+    } else if (reason.status == 429) {
+      this.messageService.showWarning('网络繁忙，请稍后再试！');
     }
+    console.log(reason);
     return Promise.reject(reason);
   }
 
@@ -182,6 +185,30 @@ export class HttpService {
       });
   }
 
+  adminGetStudentInfo(id): Promise<any> {
+    return this.http.post(HttpService.base_url + 'api/student/admin-get-student-info', {'id': id})
+      .toPromise()
+      .catch((error) => {
+        return this.handleError(error);
+      });
+  }
+
+  adminCreateOrUpdateStudent(student): Promise<any> {
+    return this.http.post(HttpService.base_url + 'api/student/admin-create-or-update-student', student)
+      .toPromise()
+      .catch((error) => {
+        return this.handleError(error);
+      });
+  }
+
+  adminDeleteStudent(id): Promise<any> {
+    return this.http.post(HttpService.base_url + 'api/student/admin-delete-student', {'id': id})
+      .toPromise()
+      .catch((error) => {
+        return this.handleError(error);
+      });
+  }
+
   adminGetStatisticData(): Promise<any> {
     return this.http.get(HttpService.base_url + 'api/statistic/get-data')
       .toPromise()
@@ -190,5 +217,4 @@ export class HttpService {
       });
   }
 }
-
 

@@ -1,3 +1,49 @@
-<div class="student-dialog">
-
+<div class="my-form">
+  <div class="my-form-field">
+    <label>学号</label>
+    <div class="my-form-control">
+      <input [formControl]="studentInfoForm.controls['xh']" pInputText="" placeholder="请输入学号">
+    </div>
+  </div>
+  <div class="my-form-field">
+    <label>姓名</label>
+    <div class="my-form-control">
+      <input [formControl]="studentInfoForm.controls['xm']" pInputText="" placeholder="请输入姓名">
+    </div>
+  </div>
+  <div class="my-form-field">
+    <label>学院</label>
+    <div class="my-form-control">
+      <input [formControl]="studentInfoForm.controls['xy']" pInputText="" placeholder="请输入学院">
+    </div>
+  </div>
+  <div class="my-form-field">
+    <label>专业</label>
+    <div class="my-form-control">
+      <input [formControl]="studentInfoForm.controls['zy']" pInputText="" placeholder="请输入专业">
+    </div>
+  </div>
+  <div class="my-form-field">
+    <label>班级</label>
+    <div class="my-form-control">
+      <input [formControl]="studentInfoForm.controls['bj']" pInputText="" placeholder="请输入班级">
+    </div>
+  </div>
+  <div class="my-form-field">
+    <label>身份证号</label>
+    <div class="my-form-control">
+      <input [formControl]="studentInfoForm.controls['sfzh']" pInputText="" placeholder="请输入身份证号">
+    </div>
+  </div>
+  <div class="my-form-field">
+    <label>毕业中学</label>
+    <div class="my-form-control">
+      <input [formControl]="studentInfoForm.controls['byzx']" pInputText="" placeholder="请输入毕业中学">
+    </div>
+  </div>
+  <div class="center">
+    <button (click)="commit()" [disabled]="studentInfoForm.invalid" pButton="" label="提交" class="ui-button-success"></button>
+    <button (click)="delete()" pButton="" label="删除" class="ui-button-danger"></button>
+    <button (click)="close()" pButton="" label="取消"></button>
+  </div>
 </div>

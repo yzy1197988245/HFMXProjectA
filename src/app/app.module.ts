@@ -16,6 +16,8 @@ import {MessageService} from "./services/message.service";
 import {NotificationService} from "./services/notification.service";
 import {AuthInterceptor} from "./services/auth-interceptor";
 import {LoadingService} from "./services/loading.service";
+import {MAT_DIALOG_DEFAULT_OPTIONS} from "@angular/material";
+import {ConfirmationService} from "primeng/api";
 
 const routes: Routes = [
   {
@@ -84,6 +86,8 @@ const routes: Routes = [
       useClass: AuthInterceptor,
       multi: true,
     },
+    ConfirmationService
+    // {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
   ],
   bootstrap: [AppComponent]
 })

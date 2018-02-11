@@ -3,7 +3,9 @@ import {HttpService} from "../../services/http.service";
 import {NotificationService} from "../../services/notification.service";
 import {MessageService} from "../../services/message.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {MatPaginatorIntl} from "@angular/material";
+import {MatDialog, MatPaginatorIntl} from "@angular/material";
+import {StudentDialogComponent} from "../student-dialog/student-dialog.component";
+import {ConfirmationService} from "primeng/api";
 
 @Component({
   selector: 'app-student-list',
@@ -26,10 +28,14 @@ export class StudentListComponent implements OnInit {
     private messageService: MessageService,
     private formBuilder: FormBuilder,
     private matPaginatorInt: MatPaginatorIntl,
+    private matDialog: MatDialog,
+    private confirmationService: ConfirmationService
   ) {
     matPaginatorInt.nextPageLabel = '下一页';
     matPaginatorInt.previousPageLabel = '上一页';
     matPaginatorInt.itemsPerPageLabel = '每页显示';
+    matPaginatorInt.firstPageLabel = '第一页';
+    matPaginatorInt.lastPageLabel = '最后一页';
     this.queryParams = formBuilder.group({
       'page': [this.currentPage],
       'pageSize': [this.pageSize],
@@ -44,16 +50,22 @@ export class StudentListComponent implements OnInit {
     // });
 
     this.getStudentList();
-
   }
 
   syncStudentInfo(): void {
-    this.httpService.adminSyncStudentInfo()
-      .then(res => {
-        if (res.code == 200) {
-          this.messageService.showSuccess(res.message);
-        }
-      })
+    this.confirmationService.confirm({
+      message: '确定启动同步数据？同步数据将花费大量时间！',
+      accept: () => {
+        this.httpService.adminSyncStudentInfo()
+          .then(res => {
+            if (res.code == 200) {
+              this.messageService.showSuccess(res.message);
+            }
+          }).catch(() => {
+            this.messageService.showWarning('同步失败！出现异常');
+        })
+      }
+    });
   }
 
   searchStudent(): void {
@@ -78,6 +90,25 @@ export class StudentListComponent implements OnInit {
   }
 
   createStudent(): void {
+    const dialogRef = this.matDialog.open(StudentDialogComponent, {
+      width: '500px',
+      data: '-1'
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      if (res === 'update')
+        this.getStudentList();
+    })
+  }
 
+  showStudentDetail(id): void {
+    const dialogRef = this.matDialog.open(StudentDialogComponent, {
+      width: '500px',
+      data: id
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      if (res === 'update')
+        this.getStudentList();
+    })
   }
 }
+

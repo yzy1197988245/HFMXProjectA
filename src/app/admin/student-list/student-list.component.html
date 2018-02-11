@@ -1,6 +1,6 @@
 <!--<button mat-raised-button="" color="primary" >同步学生数据！</button>-->
 <!--<mat-progress-bar mode="determinate" [value]="progress" ></mat-progress-bar>-->
-
+<!--<app-student-dialog *ngIf="isShowStudentDetail"></app-student-dialog>-->
 <div class="student-list-container">
   <div class="operation">
     <button (click)="createStudent()" pButton label="添加学生" class="ui-button-success"></button>
@@ -21,6 +21,7 @@
                    [pageSize]="pageSize"
                    [pageSizeOptions]="pageSizeOptions"
                    (page)="pageChanged($event)"
+                   [showFirstLastButtons]="true"
     ></mat-paginator>
   </div>
   <table class="student-list">
@@ -30,7 +31,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let student of studentList">
+    <tr *ngFor="let student of studentList" (click)="showStudentDetail(student.id)">
       <td>{{ student.xh }}</td>
       <td>{{ student.xm }}</td>
       <td>{{ student.xy }}</td>
@@ -46,6 +47,7 @@
                    [pageSize]="pageSize"
                    [pageSizeOptions]="pageSizeOptions"
                    (page)="pageChanged($event)"
+                   [showFirstLastButtons]="true"
     ></mat-paginator>
   </div>
 </div>

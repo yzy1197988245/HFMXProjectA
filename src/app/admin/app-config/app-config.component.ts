@@ -3,6 +3,7 @@ import {HttpService} from "../../services/http.service";
 import {AuthService} from "../../services/auth.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MessageService} from "../../services/message.service";
+import {ConfirmationService} from "primeng/api";
 
 @Component({
   selector: 'app-app-config',
@@ -19,7 +20,8 @@ export class AppConfigComponent implements OnInit {
     private httpService: HttpService,
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
   ) { }
 
   ngOnInit() {
@@ -46,15 +48,20 @@ export class AppConfigComponent implements OnInit {
 
   updateConfigs() {
     if (this.configForm.valid) {
-      const configs = this.configForm.value;
-      this.httpService.updateAppConfig(configs)
-        .then(res => {
-          this.messageService.showSuccess(res);
-          this.authService.appConfig = configs;
-        })
-        .catch(error => {
-          this.messageService.showDanger('更新失败:'+error.error);
-        });
+      this.confirmationService.confirm({
+        message: '提交前请确认要上传的二维码图片已经上传，否则二维码将不会被修改！',
+        accept: () => {
+          const configs = this.configForm.value;
+          this.httpService.updateAppConfig(configs)
+            .then(res => {
+              this.messageService.showSuccess(res);
+              this.authService.appConfig = configs;
+            })
+            .catch(error => {
+              this.messageService.showDanger('更新失败:'+error.error);
+            });
+        }
+      });
     }
   }
 

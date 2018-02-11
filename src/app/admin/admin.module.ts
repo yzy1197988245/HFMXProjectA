@@ -52,6 +52,9 @@ const routes: Routes = [
     CommonModule,
     MyCommonModule
   ],
+  entryComponents: [
+    StudentDialogComponent
+  ],
   declarations: [DefaultComponent, TeamListComponent, TeamDetailComponent, StudentListComponent, AppConfigComponent, StudentDialogComponent, UserListComponent, UserDialogComponent, StatisticsDataComponent]
 })
 export class AdminModule { }
