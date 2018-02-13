@@ -1,0 +1,50 @@
+.my-form {
+  //width: 500px;
+  //border: 1px dashed lightgray;
+  //border-radius: 5px;
+  padding: 10px;
+
+  .my-form-field {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    //border-bottom: 1px dashed lightgray;
+
+    >label {
+      width: 150px;
+      flex-grow: 0;
+      flex-shrink: 0;
+      display: block;
+      margin-right: 20px;
+      font-weight: bolder;
+    }
+
+    .my-form-control {
+      flex-grow: 1;
+      flex-shrink: 1;
+    }
+  }
+}
+
+.member-info {
+  width: 100%;
+
+  td,th {
+    padding: 5px;
+    width: 20%;
+    border: 1px solid lightgray;
+    text-align: center;
+  }
+}
+
+.file-list {
+  width: 100%;
+  margin-top: 10px;
+
+  td,th {
+    padding: 5px;
+    border: 1px solid lightgray;
+  }
+}

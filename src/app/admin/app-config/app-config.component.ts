@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpService} from "../../services/http.service";
 import {AuthService} from "../../services/auth.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MessageService} from "../../services/message.service";
 import {ConfirmationService} from "primeng/api";
+import {FileUpload} from "primeng/fileupload";
+import {HttpEventType, HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-app-config',
@@ -15,6 +17,8 @@ export class AppConfigComponent implements OnInit {
   calendarConfig;
   configForm: FormGroup;
   imageSrc;
+
+  @ViewChild('fileUploader') fileUploader: FileUpload;
 
   constructor(
     private httpService: HttpService,
@@ -41,7 +45,8 @@ export class AppConfigComponent implements OnInit {
       'returnStartDate': [this.authService.appConfig.returnStartDate, [Validators.required]],
       'returnEndDate': [this.authService.appConfig.returnEndDate, [Validators.required]],
       'exchangeCode': [this.authService.appConfig.exchangeCode, [Validators.required]],
-      'exchangeCodeImage': [this.authService.appConfig.exchangeCodeImage, [Validators.required]]
+      'exchangeCodeImage': [this.authService.appConfig.exchangeCodeImage, [Validators.required]],
+      'year': [this.authService.appConfig.year, [Validators.required]]
     });
     this.imageSrc = HttpService.base_url + 'uploads/' + this.authService.appConfig.exchangeCodeImage;
   }
@@ -49,7 +54,7 @@ export class AppConfigComponent implements OnInit {
   updateConfigs() {
     if (this.configForm.valid) {
       this.confirmationService.confirm({
-        message: '提交前请确认要上传的二维码图片已经上传，否则二维码将不会被修改！',
+        message: '确认提交？',
         accept: () => {
           const configs = this.configForm.value;
           this.httpService.updateAppConfig(configs)
@@ -69,15 +74,24 @@ export class AppConfigComponent implements OnInit {
     let formData = new FormData();
     if (image.files[0]) {
       formData.append('exchangeCodeImage', image.files[0]);
+      this.fileUploader.disabled = true;
       this.httpService.uploadExchangeCodeImage(formData)
-        .then(res => {
-          this.imageSrc = HttpService.base_url + 'uploads/' + res;
-          this.authService.appConfig.exchangeCodeImage = res;
-          this.configForm.controls['exchangeCodeImage'].setValue(res);
-        })
-        .catch(error => {
-          this.messageService.showWarning('上传异常' + error.error);
+        .subscribe(event => {
+          if (event.type === HttpEventType.UploadProgress) {
+
+          } else if (event instanceof HttpResponse) {
+            this.messageService.showSuccess('上传成功，请点击提交保存！');
+            this.configForm.controls['exchangeCodeImage'].setValue(event.body);
+            this.imageSrc = HttpService.base_url + 'uploads/' + event.body;
+            this.fileUploader.clear();
+            this.fileUploader.disabled = false;
+          }
+        }, (error) => {
+          this.messageService.showDanger(error.error);
+          this.fileUploader.clear();
+          this.fileUploader.disabled = false;
         })
     }
   }
 }
+

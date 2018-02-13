@@ -1,42 +1,31 @@
-<a routerLink="/hfmx/create-team">创建团队</a>
-<div class="team-list-container">
-  <p class="title">我负责的团队</p>
-  <table class="team-list">
-    <thead>
-    <tr>
-      <th>序号</th>
-      <th>年份</th>
-      <th>回访中学</th>
-      <th>所在省份</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let team of teams1" role="button">
-      <td></td>
-      <td>{{team['nf']}}</td>
-      <td>{{team['hfzx']}}</td>
-      <td>{{team['sf']}}</td>
-    </tr>
-    </tbody>
-  </table>
+<div class="my-row">
+  <button class="btn btn-success" routerLink="/hfmx/create-team">创建团队</button>
 </div>
-<div class="team-list-container">
-  <p class="title">我参加的团队</p>
+
+<div class="my-row">
   <table class="team-list">
     <thead>
     <tr>
-      <th>序号</th>
       <th>年份</th>
       <th>回访中学</th>
       <th>所在省份</th>
+      <th>审核状态</th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let team of teams2" role="button">
-      <td></td>
+    <tr *ngFor="let team of teamList" role="button">
       <td>{{team['nf']}}</td>
       <td>{{team['hfzx']}}</td>
       <td>{{team['sf']}}</td>
+      <td>{{team['status'] == 0?'审核中': team['status'] == 1? '审核通过': '审核失败'}}</td>
+      <td>
+        <div class="d-inline">
+          <button class="btn btn-info btn-sm" [routerLink]="['/hfmx', 'update-team', team.id]">编辑</button>
+          <button class="btn btn-primary btn-sm" [routerLink]="['/hfmx', 'team-info', team.id]">查看</button>
+          <button class="btn btn-success btn-sm" [routerLink]="['/hfmx', 'team-receipt', team.id]">填写回执</button>
+        </div>
+      </td>
     </tr>
     </tbody>
   </table>

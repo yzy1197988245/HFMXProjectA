@@ -58,12 +58,12 @@
         <td class="">{{member['bj']}}</td>
         <td class="">{{member['phone']}}</td>
         <td class="center">
-          <button mat-mini-fab (click)="deleteMember(member)" color="warn" >删除</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteMember(member)">删除</button>
         </td>
       </tr>
       <tr>
         <td colspan="6" class="center">
-          <button mat-raised-button color="primary" (click)="addMember()">添加成员</button>
+          <button class="btn btn-primary" (click)="addMember()">添加成员</button>
         </td>
       </tr>
       <tr>

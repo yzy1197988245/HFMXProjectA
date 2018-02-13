@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {CanActivate, CanActivateChild, Router} from "@angular/router";
-import {LocalStorage, SessionStorage} from "ngx-webstorage";
+import {SessionStorage} from "ngx-webstorage";
 import {isNullOrUndefined} from "util";
 
 

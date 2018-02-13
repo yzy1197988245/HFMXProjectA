@@ -1,0 +1,111 @@
+<div class="my-form">
+  <div class="my-form-field">
+    <label>回访学校</label>
+    <div class="my-form-control">
+      <label>{{ teamInfo?.hfzx }}</label>
+    </div>
+  </div>
+  <div class="my-form-field">
+    <label>省份</label>
+    <div class="my-form-control">
+      <label>{{ teamInfo?.sf }}</label>
+    </div>
+  </div>
+  <div class="my-form-field">
+    <label class="align-self-start">组长信息</label>
+    <div class="my-form-control">
+      <table class="member-info">
+        <thead>
+        <tr><th>学号</th><th>姓名</th><th>学院</th><th>班级</th><th>联系电话</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>{{ teamInfo?.xh }}</td>
+          <td>{{ teamInfo?.xm }}</td>
+          <td>{{ teamInfo?.xy }}</td>
+          <td>{{ teamInfo?.bj }}</td>
+          <td>{{ teamInfo?.phone }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="my-form-field">
+    <label class="align-self-start">组员信息</label>
+    <div class="my-form-control">
+      <table class="member-info">
+        <thead>
+        <tr><th>学号</th><th>姓名</th><th>学院</th><th>班级</th><th>联系电话</th></tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let member of members">
+          <td>{{ member.xh }}</td>
+          <td>{{ member.xm }}</td>
+          <td>{{ member.xy }}</td>
+          <td>{{ member.bj }}</td>
+          <td>{{ member.phone }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="my-form-field">
+    <label class="align-self-start">
+      回访时间
+    </label>
+    <div class="my-form-control">
+      <p-calendar></p-calendar>
+    </div>
+  </div>
+  <div class="my-form-field">
+    <label class="align-self-start">
+      活动小结
+    </label>
+    <div class="my-form-control">
+      <ueditor></ueditor>
+    </div>
+  </div>
+  <div class="my-form-field">
+    <label class="align-self-start">
+      回执
+    </label>
+    <div class="my-form-control">
+      <button (click)="chooseReceipt()" class="btn btn-primary btn-sm">选择已上传文件</button>
+      <table class="file-list">
+        <tbody>
+        <tr *ngFor="let file of receiptFile">
+          <td>{{file.fileName}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="my-form-field">
+    <label class="align-self-start">
+      附件
+    </label>
+    <div class="my-form-control">
+      <button (click)="chooseOtherFiles()" class="btn btn-primary btn-sm">选择已上传文件</button>
+      <table class="file-list">
+        <tbody>
+        <tr *ngFor="let file of otherFiles">
+          <td>{{file.fileName}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="text-center">
+    <button class="btn btn-success btn-lg">提交</button>
+  </div>
+</div>
+
+<p-sidebar
+  [(visible)]="isChooseFile"
+  position="right"
+  [style]="{'width':'600px', 'overflow':'auto'}"
+  [blockScroll]="true"
+>
+  <app-file-selector #fileSelector [selectedFiles]="selectedFiles" (onCommit)="fileSelected($event)"></app-file-selector>
+</p-sidebar>
+

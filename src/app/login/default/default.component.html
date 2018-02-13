@@ -16,7 +16,7 @@
     </form>
     <div style="margin-top: 20px; text-align: center">
       <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
-      <button mat-raised-button color="primary" (click)="login()" style="width: 100%; height: 50px; font-size: 18px" *ngIf="!loading" [disabled]="(userName.invalid || password.invalid)">登录</button>
+      <button class="btn btn-success" (click)="login()" style="width: 100%; height: 50px; font-size: 18px" *ngIf="!loading" [disabled]="(userName.invalid || password.invalid)">登录</button>
     </div>
   </div>
 </div>

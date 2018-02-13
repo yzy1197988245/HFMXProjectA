@@ -116,7 +116,7 @@ export class DefaultComponent implements OnInit {
                     });
                     break;
                   case 'api_student':
-                    this.router.navigate(['/', 'hfmx', 'step1']).then(res => {
+                    this.router.navigate(['/', 'hfmx', 'team-list']).then(res => {
                       this.loading = false;
                     });
                     break;
@@ -134,10 +134,12 @@ export class DefaultComponent implements OnInit {
         if (response.status == 422) {
           let errors = response.error.errors;
           if (errors.hasOwnProperty('username')) {
-            this.userName.setErrors({'response': errors.username[0]})
+            this.userName.setErrors({'response': errors.username[0]});
+            this.messageService.showDanger(this.userName.getError('response'));
           }
           if (errors.hasOwnProperty('password')) {
-            this.password.setErrors({'response': errors.password[0]})
+            this.password.setErrors({'response': errors.password[0]});
+            this.messageService.showDanger(this.password.getError('response'));
           }
         }
       })

@@ -1,5 +1,11 @@
 <div class="my-form">
   <div class="my-form-field">
+    <label>当前报名年份</label>
+    <div class="my-form-control">
+      <input [formControl]="configForm.controls['year']" type="number" pInputText="">
+    </div>
+  </div>
+  <div class="my-form-field">
     <label>报名开始时间</label>
     <div class="my-form-control">
       <p-calendar
@@ -65,8 +71,16 @@
     <label class="top">交流群二维码</label>
     <div class="my-form-control">
       <div>
-        <input #image type="file" accept="image/*">
-        <button (click)="uploadExchangeCodeImage(image)" pButton="" label="上传"></button>
+        <!--<input #image type="file" accept="image/*">-->
+        <!--<button (click)="uploadExchangeCodeImage(image)" pButton="" label="上传"></button>-->
+        <p-fileUpload mode="basic"
+                      [customUpload]="true"
+                      (uploadHandler)="uploadExchangeCodeImage($event)"
+                      [auto]="true"
+                      #fileUploader
+                      chooseLabel="选择文件"
+                      accept="image/*"
+        ></p-fileUpload>
       </div>
       <img [src]="imageSrc">
     </div>

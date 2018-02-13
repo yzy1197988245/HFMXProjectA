@@ -10,6 +10,7 @@ export class UpdateTeamComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpRequest} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {MessageService} from "./message.service";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class HttpService {
@@ -23,6 +24,11 @@ export class HttpService {
     }
     console.log(reason);
     return Promise.reject(reason);
+  }
+
+  handleError2(error): any {
+    console.log('error');
+    return error;
   }
 
   login(params): Promise<any> {
@@ -57,12 +63,13 @@ export class HttpService {
       });
   }
 
-  uploadExchangeCodeImage(image): Promise<any> {
-    return this.http.post(HttpService.base_url + 'api/update-exchange-code-image', image)
-      .toPromise()
-      .catch((error) => {
-        return this.handleError(error);
-      });
+  uploadExchangeCodeImage(image): Observable<any> {
+    const request = new HttpRequest('POST', HttpService.base_url + 'api/update-exchange-code-image', image, {
+      reportProgress: true
+    });
+    return this.http.request(request).catch(error => {
+      throw this.handleError2(error);
+    });
   }
 
   zxOptions(searchText): Promise<any> {
@@ -215,6 +222,27 @@ export class HttpService {
       .catch((error) => {
         return this.handleError(error);
       });
+  }
+
+  studentGetTeamBaseInfo(id): Observable<any> {
+    return this.http.post(HttpService.base_url + 'api/team/student-get-team-base-info', {'id': id})
+      .catch(err => {
+        throw this.handleError2(err);
+      })
+  }
+
+  getFileList(): Observable<any> {
+    return this.http.get(HttpService.base_url + 'api/get-file-list')
+      .catch(err => {
+        throw this.handleError2(err);
+      })
+  }
+
+  deleteFile(id): Observable<any> {
+    return this.http.post(HttpService.base_url + 'api/delete-file', {'id': id})
+      .catch(err => {
+        throw this.handleError2(err);
+      })
   }
 }
 

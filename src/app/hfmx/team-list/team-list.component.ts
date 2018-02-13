@@ -9,8 +9,7 @@ import {AuthService} from "../../services/auth.service";
 })
 export class TeamListComponent implements OnInit {
 
-  teams1;
-  teams2;
+  teamList;
 
   constructor(
     private httpService: HttpService,
@@ -20,10 +19,7 @@ export class TeamListComponent implements OnInit {
   ngOnInit() {
     this.httpService.studentGetTeamList(this.authService.userInfo.xh)
       .then(response => {
-        if (response.code == 200) {
-          this.teams1 = response.data.teams1;
-          this.teams2 = response.data.teams2;
-        }
+        this.teamList = response;
       })
   }
 }

@@ -13,3 +13,12 @@ body {
 p {
   word-break: break-all;
 }
+
+.ui-widget-overlay {
+  background: black;
+  opacity: 0.5;
+}
+
+label {
+  margin-bottom: 0;
+}

@@ -1,0 +1,35 @@
+<div>
+  <button (click)="chooseFile($event)" [disabled]="isUploading" class="btn btn-primary btn-sm">选择文件</button>
+  <button (click)="upload()" [disabled]="isUploading" class="btn btn-primary btn-sm">上传</button>
+  <input
+    [attr.id]="inputId"
+    type="file"
+    [attr.multiple]="multiple"
+    accept="application/pdf,image/*,video/mp4"
+    class="d-none"
+    (change)="inputChange($event)"
+  >
+  <table class="file-list" *ngIf="files.length > 0">
+    <thead>
+    <tr>
+      <th>文件名</th>
+      <th>文件大小</th>
+      <th>当前状态</th>
+      <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let file of files">
+      <ng-container *ngIf="file.uploadStatus != 2">
+        <td>{{file.fileData.name}}</td>
+        <td>{{file.fileSize}}MB</td>
+        <td>
+          <span *ngIf="file.uploadStatus != 1">{{getCurrentStatus(file)}}</span>
+          <progressbar *ngIf="file.uploadStatus == 1" [animate]="true" [max]="100" [value]="file.uploadProgress" [striped]="true"></progressbar>
+        </td>
+        <td><button class="btn btn-danger btn-sm" (click)="delete(file)">删除</button></td>
+      </ng-container>
+    </tr>
+    </tbody>
+  </table>
+</div>

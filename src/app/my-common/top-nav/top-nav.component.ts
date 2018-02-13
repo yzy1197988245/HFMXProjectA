@@ -21,7 +21,9 @@ export class TopNavComponent implements OnInit {
     event.preventDefault();
     this.authService.isLoggedIn = false;
     this.authService.userInfo = {};
-    // this.authService.userInfo.save();
+    this.authService.appConfig = {};
+    this.authService.token = {};
+    this.authService.guard = '';
     this.router.navigate(['/', 'login']);
   }
 }

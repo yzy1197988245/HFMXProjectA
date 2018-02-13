@@ -11,6 +11,8 @@ import { UpdateTeamComponent } from './update-team/update-team.component';
 import { TeamInfoComponent } from './team-info/team-info.component';
 import { TeamFormComponent } from './team-form/team-form.component';
 import { AddMemberDialogComponent } from './team-form/add-member-dialog/add-member-dialog.component';
+import { TeamReceiptComponent } from './team-receipt/team-receipt.component';
+import {FileUploaderComponent} from "../my-common/file-uploader/file-uploader.component";
 
 const routes: Routes = [
   {
@@ -26,15 +28,19 @@ const routes: Routes = [
         component: Step1Component
       },
       {
-        path: 'team-info',
+        path: 'team-info/:id',
       },
       {
         path: 'create-team',
         component: CreateTeamComponent
       },
       {
-        path: 'update-team',
+        path: 'update-team/:id',
         component: UpdateTeamComponent
+      },
+      {
+        path: 'team-receipt/:id',
+        component: TeamReceiptComponent
       },
       {
         path: '',
@@ -55,7 +61,7 @@ const routes: Routes = [
     MyCommonModule,
     RouterModule.forChild(routes),
   ],
-  declarations: [DefaultComponent, Step1Component, AddMemberDialog, TeamComponent, TeamListComponent, CreateTeamComponent, UpdateTeamComponent, TeamInfoComponent, TeamFormComponent, AddMemberDialogComponent],
-  entryComponents: [AddMemberDialog, AddMemberDialogComponent]
+  declarations: [DefaultComponent, Step1Component, AddMemberDialog, TeamComponent, TeamListComponent, CreateTeamComponent, UpdateTeamComponent, TeamInfoComponent, TeamFormComponent, AddMemberDialogComponent, TeamReceiptComponent],
+  entryComponents: [AddMemberDialog, AddMemberDialogComponent, FileUploaderComponent]
 })
 export class HfmxModule { }

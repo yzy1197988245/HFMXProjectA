@@ -10,8 +10,8 @@
 </div>
 
 <div class="actions">
-  <button mat-button color="primary" (click)="close()">取消</button>
-  <button mat-raised-button color="primary" (click)="commit()" [disabled]="memberForm.invalid">确定</button>
+  <button class="btn btn-secondary" (click)="close()">取消</button>
+  <button class="btn btn-primary" (click)="commit()" [disabled]="memberForm.invalid">确定</button>
 </div>
 
 <mat-autocomplete #xs="matAutocomplete" (optionSelected)="studentSelected($event.option.value)">
