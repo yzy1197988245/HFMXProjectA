@@ -1,3 +1,42 @@
-<p>
-  source-viewer works!
-</p>
+<div
+  class="source-viewer-background"
+  *ngIf="isShowBackground"
+  [@backgroundTransform]="sourceService.sourceViewerStatus"
+  (click)="close()"
+></div>
+
+<div class="source-viewer"
+     [@transform]="sourceService.sourceViewerStatus"
+     (@transform.start)="checkBackground('start')"
+     (@transform.done)="checkBackground('done')"
+>
+  <div class="source-content-container">
+    <div *ngIf="currentSource?.fileType == 'image'" class="content">
+      <img  id="sourceImage" [src]="baseUrl + currentSource?.id" style="display: none">
+    </div>
+    <div *ngIf="currentSource?.fileType == 'pdf'" class="content">
+      <pdf-viewer
+        [src]="baseUrl + currentSource?.id"
+        [original-size]="false"
+        [fit-to-page]="true"
+        style="display: block"
+        (error)="onError($event)"
+      >
+      </pdf-viewer>
+      <!--<iframe [src]="getSafeUrl()">-->
+
+      <!--</iframe>-->
+    </div>
+  </div>
+  <div class="source-list">
+    <div class="text-right">
+      <button (click)="close()" class="btn btn-danger">关闭</button>
+    </div>
+    <div>
+      <ul>
+        <li *ngFor="let source of sourceService.sources" (click)="showSource(source)">{{ source.fileName }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+

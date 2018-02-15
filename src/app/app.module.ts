@@ -20,6 +20,7 @@ import {MessageService} from "./services/message.service";
 import {NotificationService} from "./services/notification.service";
 import {AuthInterceptor} from "./services/auth-interceptor";
 import {LoadingService} from "./services/loading.service";
+import {SourceViewerService} from "./services/source-viewer.service";
 
 
 const routes: Routes = [
@@ -92,6 +93,7 @@ const routes: Routes = [
       multi: true,
     },
     ConfirmationService,
+    SourceViewerService
     // {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
   ],
   bootstrap: [AppComponent]

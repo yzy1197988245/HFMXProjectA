@@ -6,7 +6,7 @@
     type="file"
     [attr.multiple]="multiple"
     accept="application/pdf,image/*,video/mp4"
-    class="d-none"
+    style="display: none"
     (change)="inputChange($event)"
   >
   <table class="file-list" *ngIf="files.length > 0">

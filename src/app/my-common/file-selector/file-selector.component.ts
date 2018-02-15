@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpService} from "../../services/http.service";
 import {MessageService} from "../../services/message.service";
+import {SourceViewerService} from "../../services/source-viewer.service";
 
 @Component({
   selector: 'app-file-selector',
@@ -11,12 +12,13 @@ export class FileSelectorComponent implements OnInit {
 
   @Output() onCommit = new EventEmitter();
   @Input() selectedFiles = [];
-  fileList;
+  fileList = [];
   url;
 
   constructor(
     private httpService: HttpService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private sourceViewer: SourceViewerService
   ) {
     this.url = HttpService.base_url + 'api/upload-file'
   }
@@ -56,5 +58,9 @@ export class FileSelectorComponent implements OnInit {
 
   commit(): void {
     this.onCommit.emit(this.selectedFiles);
+  }
+
+  preview(): void {
+    this.sourceViewer.showSourceViewer(this.fileList);
   }
 }

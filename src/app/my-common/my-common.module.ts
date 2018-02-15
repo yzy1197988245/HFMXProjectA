@@ -35,6 +35,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {PdfViewerModule} from "ng2-pdf-viewer";
 
 @NgModule({
   imports: [
@@ -65,7 +66,8 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     ProgressbarModule,
     BlockUIModule,
     SidebarModule,
-    CheckboxModule
+    CheckboxModule,
+    PdfViewerModule
   ],
   declarations: [TopNavComponent, AlertCenterComponent, LoadingCoverComponent, SourceViewerComponent, FileUploaderComponent, FileSelectorComponent],
   entryComponents: [FileSelectorComponent],
@@ -75,6 +77,7 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     LoadingCoverComponent,
     FileUploaderComponent,
     FileSelectorComponent,
+    SourceViewerComponent,
 
     FormsModule,
     ReactiveFormsModule,
@@ -101,7 +104,8 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     ProgressbarModule,
     BlockUIModule,
     SidebarModule,
-    CheckboxModule
+    CheckboxModule,
+    PdfViewerModule,
   ],
   providers: [
     // MessageService

@@ -1,0 +1,42 @@
+@import "~viewerjs/dist/viewer.css";
+
+.source-viewer {
+  position: fixed;
+  //width: 95%;
+  //height: 95%;
+  left: 2.5%;
+  right: 2.5%;
+  top: 2.5%;
+  bottom: 2.5%;
+  z-index: 2000;
+  background: whitesmoke;
+  display: flex;
+  transform: translateY(-110%);
+
+  .source-list {
+    width: 300px;
+    height: 100%;
+    background: white;
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+
+  .source-content-container {
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow: hidden;
+
+    >.content {
+      height: 100%;
+    }
+  }
+}
+
+.source-viewer-background {
+  background: black;
+  opacity: 0;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 1999;
+}

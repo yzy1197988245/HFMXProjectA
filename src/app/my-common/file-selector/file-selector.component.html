@@ -2,10 +2,9 @@
   <div class="part">
     <h4>本地文件上传</h4>
     <app-file-uploader [multiple]="true" [url]="url" (onUploadComplete)="uploadComplete()"></app-file-uploader>
-  </div>
-  <hr>
-  <div class="part">
-    <h4>已上传的文件</h4>
+    <hr>
+    <h4 style="display: inline-block">已上传的文件</h4>
+    <button (click)="preview()" class="btn btn-primary btn-sm">预览</button>
     <table class="file-list">
       <tbody>
       <tr *ngFor="let file of fileList">
@@ -14,10 +13,12 @@
           [value]="file"
           [label]="file.fileName"
           [inputId]="file.id + file.fileName"
-          [style]="{'margin-bottom':0}"
           [(ngModel)]="selectedFiles"
         ></p-checkbox></td>
-        <td><button (click)="deleteFile(file)" class="btn btn-danger btn-sm">删除</button> </td>
+        <td>{{ file.fileType }}</td>
+        <td>
+          <button (click)="deleteFile(file)" class="btn btn-danger btn-sm">删除</button>
+        </td>
       </tr>
       </tbody>
     </table>
@@ -26,6 +27,3 @@
     <button (click)="commit()" class="btn btn-success btn-lg">确定</button>
   </div>
 </div>
-
-
-

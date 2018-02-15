@@ -19,6 +19,7 @@ export class TeamReceiptComponent implements OnInit {
   otherFiles = [];
   fileSelectorTag = 0;
   selectedFiles = [];
+  images = [];
 
   constructor(
     private httpService: HttpService,
@@ -26,7 +27,10 @@ export class TeamReceiptComponent implements OnInit {
   ) {
     this.route.paramMap.subscribe(params => {
       this.teamId = params.get('id');
-    })
+    });
+    this.images.push(
+      HttpService.base_url + 'api/get-file?id=1'
+    );
   }
 
   ngOnInit() {
