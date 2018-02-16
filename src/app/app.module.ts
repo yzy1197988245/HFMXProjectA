@@ -21,6 +21,10 @@ import {NotificationService} from "./services/notification.service";
 import {AuthInterceptor} from "./services/auth-interceptor";
 import {LoadingService} from "./services/loading.service";
 import {SourceViewerService} from "./services/source-viewer.service";
+import {VgCoreModule} from "videogular2/core";
+import {VgControlsModule} from "videogular2/controls";
+import {VgOverlayPlayModule} from "videogular2/overlay-play";
+import {VgBufferingModule} from "videogular2/buffering";
 
 
 const routes: Routes = [
@@ -79,7 +83,8 @@ const routes: Routes = [
     Ng2Webstorage,
     AlertModule.forRoot(),
     PaginationModule.forRoot(),
-    ProgressbarModule.forRoot()
+    ProgressbarModule.forRoot(),
+
   ],
   providers: [
     AuthService,

@@ -15,7 +15,7 @@
           [inputId]="file.id + file.fileName"
           [(ngModel)]="selectedFiles"
         ></p-checkbox></td>
-        <td>{{ file.fileType }}</td>
+        <td><span class="badge badge-info">{{ file.fileType }}</span></td>
         <td>
           <button (click)="deleteFile(file)" class="btn btn-danger btn-sm">删除</button>
         </td>

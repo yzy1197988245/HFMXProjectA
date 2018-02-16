@@ -12,29 +12,52 @@
 >
   <div class="source-content-container">
     <div *ngIf="currentSource?.fileType == 'image'" class="content">
-      <img  id="sourceImage" [src]="baseUrl + currentSource?.id" style="display: none">
+      <img  id="sourceImage" [src]="baseUrl + currentSource?.path" style="display: none">
     </div>
     <div *ngIf="currentSource?.fileType == 'pdf'" class="content">
       <pdf-viewer
-        [src]="baseUrl + currentSource?.id"
+        [src]="baseUrl + currentSource?.path"
         [original-size]="false"
         [fit-to-page]="true"
         style="display: block"
         (error)="onError($event)"
       >
       </pdf-viewer>
-      <!--<iframe [src]="getSafeUrl()">-->
-
-      <!--</iframe>-->
+    </div>
+    <div *ngIf="currentSource?.fileType == 'video'" class="content">
+      <vg-player [style]="{height: '100%'}">
+        <vg-overlay-play [vgFor]="'my-video'"></vg-overlay-play>
+        <vg-controls [vgFor]="'my-video'" [vgAutohide]="true" [vgAutohideTime]="5">
+          <vg-play-pause></vg-play-pause>
+          <vg-playback-button [playbackValues]="[ '1.0', '2.0', '4.0' ]"></vg-playback-button>
+          <vg-time-display  [vgProperty]="'current'" [vgFormat]="'mm:ss'"></vg-time-display>
+          <vg-scrub-bar>
+            <vg-scrub-bar-current-time [vgSlider]="true"></vg-scrub-bar-current-time>
+            <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+          </vg-scrub-bar>
+          <vg-time-display  [vgProperty]="'total'" [vgFormat]="'mm:ss'"></vg-time-display>
+          <vg-mute></vg-mute>
+          <vg-volume></vg-volume>
+          <vg-fullscreen></vg-fullscreen>
+        </vg-controls>
+        <vg-buffering [vgFor]="'my-video'"></vg-buffering>
+        <video #myMedia
+               id="my-video"
+               [vgMedia]="myMedia"
+               [src]="baseUrl + currentSource?.path">
+          ></video>
+      </vg-player>
     </div>
   </div>
   <div class="source-list">
     <div class="text-right">
-      <button (click)="close()" class="btn btn-danger">关闭</button>
+      <button (click)="close()" class="btn btn-danger btn-sm">
+        关闭
+      </button>
     </div>
-    <div>
+    <div class="list-container">
       <ul>
-        <li *ngFor="let source of sourceService.sources" (click)="showSource(source)">{{ source.fileName }}</li>
+        <li *ngFor="let source of sourceService.sources" (click)="showSource(source)" [@listItemState]="getListState(source)"  (mouseover)="onMouseOver(source)">{{ source.fileName }}</li>
       </ul>
     </div>
   </div>

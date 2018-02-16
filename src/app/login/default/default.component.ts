@@ -146,7 +146,6 @@ export class DefaultComponent implements OnInit {
   }
 
   keyDown(event) {
-    console.log(event);
     if (event.key == 'Enter' && this.userName.valid && this.password.valid) {
       this.login();
     }

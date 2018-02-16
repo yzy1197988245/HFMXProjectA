@@ -19,6 +19,7 @@ import {FileUploadModule} from "primeng/fileupload";
 import {BlockUIModule} from "primeng/blockui";
 import {SidebarModule} from "primeng/sidebar";
 import {CheckboxModule} from "primeng/checkbox";
+import {ScrollPanelModule} from "primeng/scrollpanel";
 
 import {PaginationModule} from "ngx-bootstrap/pagination";
 import {AlertModule} from "ngx-bootstrap/alert";
@@ -36,6 +37,11 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {PdfViewerModule} from "ng2-pdf-viewer";
+import {VgBufferingModule} from "videogular2/buffering";
+import {VgControlsModule} from "videogular2/controls";
+import {VgCoreModule} from "videogular2/core";
+import {VgOverlayPlayModule} from "videogular2/overlay-play";
+
 
 @NgModule({
   imports: [
@@ -67,7 +73,14 @@ import {PdfViewerModule} from "ng2-pdf-viewer";
     BlockUIModule,
     SidebarModule,
     CheckboxModule,
-    PdfViewerModule
+    PdfViewerModule,
+
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule,
+
+    ScrollPanelModule
   ],
   declarations: [TopNavComponent, AlertCenterComponent, LoadingCoverComponent, SourceViewerComponent, FileUploaderComponent, FileSelectorComponent],
   entryComponents: [FileSelectorComponent],
@@ -106,6 +119,13 @@ import {PdfViewerModule} from "ng2-pdf-viewer";
     SidebarModule,
     CheckboxModule,
     PdfViewerModule,
+
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule,
+
+    ScrollPanelModule
   ],
   providers: [
     // MessageService
