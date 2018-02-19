@@ -41,6 +41,7 @@ import {VgBufferingModule} from "videogular2/buffering";
 import {VgControlsModule} from "videogular2/controls";
 import {VgCoreModule} from "videogular2/core";
 import {VgOverlayPlayModule} from "videogular2/overlay-play";
+import {ProgressSpinnerModule} from "primeng/primeng";
 
 
 @NgModule({
@@ -80,7 +81,8 @@ import {VgOverlayPlayModule} from "videogular2/overlay-play";
     VgOverlayPlayModule,
     VgBufferingModule,
 
-    ScrollPanelModule
+    ScrollPanelModule,
+    ProgressSpinnerModule
   ],
   declarations: [TopNavComponent, AlertCenterComponent, LoadingCoverComponent, SourceViewerComponent, FileUploaderComponent, FileSelectorComponent],
   entryComponents: [FileSelectorComponent],
@@ -125,7 +127,8 @@ import {VgOverlayPlayModule} from "videogular2/overlay-play";
     VgOverlayPlayModule,
     VgBufferingModule,
 
-    ScrollPanelModule
+    ScrollPanelModule,
+    ProgressSpinnerModule
   ],
   providers: [
     // MessageService

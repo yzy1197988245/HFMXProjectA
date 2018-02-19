@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpService} from "../../services/http.service";
 import {AuthService} from "../../services/auth.service";
+import {MatDialog} from "@angular/material";
+import {TeamInfoComponent} from "../team-info/team-info.component";
 
 @Component({
   selector: 'app-team-list',
@@ -13,7 +15,8 @@ export class TeamListComponent implements OnInit {
 
   constructor(
     private httpService: HttpService,
-    private authService: AuthService
+    private authService: AuthService,
+    private matDialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -21,5 +24,13 @@ export class TeamListComponent implements OnInit {
       .then(response => {
         this.teamList = response;
       })
+  }
+
+  showTeamDetail(team) {
+    this.matDialog.open(TeamInfoComponent, {
+      data: team.id,
+      width: '1000px',
+      height: '100%'
+    })
   }
 }

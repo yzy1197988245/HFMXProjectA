@@ -1,1 +1,47 @@
-<h1>团队信息</h1>
+<div class="table-container">
+  <div style="padding: 20px">
+    <p class="title center">中国矿业大学（北京）寒假大学生回访高中母校宣传活动报名表</p>
+    <div class="text-center" *ngIf="teamInfo == null">
+      <p-progressSpinner></p-progressSpinner>
+    </div>
+    <table *ngIf="teamInfo != null" class="info-table">
+      <tbody>
+      <tr>
+        <td class="center item-title">回访学校全称</td>
+        <td colspan="2" class="center">{{teamInfo['hfzx']}}</td>
+        <td class="center item-title">所在省市</td>
+        <td class="center">{{teamInfo['sf']}}</td>
+      </tr>
+      <tr>
+        <td class="center item-title" width="20%">成员</td>
+        <td class="center item-title" width="20%">姓名</td>
+        <td class="center item-title" width="20%">学号</td>
+        <td class="center item-title" width="20%">班级</td>
+        <td class="center item-title" width="20%">手机号</td>
+      </tr>
+      <tr>
+        <td class="center item-title">组长</td>
+        <td class="center">{{teamInfo['xm']}}</td>
+        <td class="center">{{teamInfo['xh']}}</td>
+        <td class="center">{{teamInfo['bj']}}</td>
+        <td class="center">{{teamInfo['phone']}}</td>
+      </tr>
+      <tr *ngFor="let member of teamInfo['members']">
+        <td class="center item-title">组员</td>
+        <td class="center">{{member['xm']}}</td>
+        <td class="center">{{member['xh']}}</td>
+        <td class="center">{{member['bj']}}</td>
+        <td class="center">{{member['phone']}}</td>
+      </tr>
+      <tr>
+        <td class="center item-title">活动计划</td>
+        <td colspan="5" [innerHtml]="hdjh"></td>
+      </tr>
+      <tr>
+        <td class="center item-title">申报优势</td>
+        <td colspan="5" [innerHtml]="sbys"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

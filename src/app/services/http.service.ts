@@ -244,5 +244,19 @@ export class HttpService {
         throw this.handleError2(err);
       })
   }
+
+  studentCreateOrUpdateReceipt(receipt): Observable<any> {
+    return this.http.post(HttpService.base_url + 'api/team/student-create-or-update-receipt', receipt)
+      .catch(err => {
+        throw this.handleError2(err);
+      })
+  }
+
+  studentGetTeamReceipt(teamId): Observable<any> {
+    return this.http.post(HttpService.base_url + 'api/team/student-get-receipt', {'id':teamId})
+      .catch(err => {
+        throw this.handleError2(err);
+      })
+  }
 }
 

@@ -54,7 +54,8 @@
       回访时间
     </label>
     <div class="my-form-control">
-      <p-calendar></p-calendar>
+      <p-calendar [locale]="calendarConfig" dateFormat="yy-mm-dd"
+                  dataType="string" [readonlyInput]="true" [(ngModel)]="receiptDate"></p-calendar>
     </div>
   </div>
   <div class="my-form-field">
@@ -62,7 +63,7 @@
       活动小结
     </label>
     <div class="my-form-control">
-      <ueditor></ueditor>
+      <ueditor #summaryEditor [ngModel]="summary"></ueditor>
     </div>
   </div>
   <div class="my-form-field">
@@ -71,6 +72,7 @@
     </label>
     <div class="my-form-control">
       <button (click)="chooseReceipt()" class="btn btn-primary btn-sm">选择已上传文件</button>
+      <button (click)="previewReceiptFiles()" class="btn btn-primary btn-sm">预览</button>
       <table class="file-list">
         <tbody>
         <tr *ngFor="let file of receiptFile">
@@ -86,6 +88,7 @@
     </label>
     <div class="my-form-control">
       <button (click)="chooseOtherFiles()" class="btn btn-primary btn-sm">选择已上传文件</button>
+      <button (click)="previewOtherFiles()" class="btn btn-primary btn-sm">预览</button>
       <table class="file-list">
         <tbody>
         <tr *ngFor="let file of otherFiles">
@@ -96,7 +99,7 @@
     </div>
   </div>
   <div class="text-center">
-    <button class="btn btn-success btn-lg">提交</button>
+    <button (click)="commitOrUpdateTeamReceipt()" class="btn btn-success btn-lg">提交</button>
   </div>
 </div>
 

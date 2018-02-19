@@ -90,7 +90,6 @@ export class TeamFormComponent implements OnInit {
 
   deleteMember(member: FormControl): void {
     let index = this.members.indexOf(member);
-    console.log(index);
     this.members.splice(index, 1);
   }
 
@@ -100,29 +99,14 @@ export class TeamFormComponent implements OnInit {
   }
 
   showContent(): void {
-    // this.hdjhValue = this.teamForm.value.hdjh;
-    // this.sbysValue = this.teamForm.value.sbys;
-    // // console.log(this.sbysValue);
-    // // this.sbys.Instance.setContent(this.sbysValue);
-    // if (this.sbys != null) {
-    //
-    // }
-    if (this.hdjh != null) {
-      this.hdjh.Instance.setContent(this.teamForm.value.hdjh);
-    } else {
-      this.hdjhValue = this.teamForm.value.hdjh;
-    }
-
-    if (this.sbys != null) {
-      this.sbys.Instance.setContent(this.teamForm.value.sbys);
-    } else {
-      this.sbysValue = this.teamForm.value.sbys;
-    }
+    this.hdjhValue = this.teamForm.value.hdjh;
+    this.sbysValue = this.teamForm.value.sbys;
   }
 
   setFormValue(value): void {
     this.members = value.members;
     this.teamForm.setValue(value.team);
+    this.showContent();
   }
 
   getFormValue(): any {

@@ -1,5 +1,4 @@
 <app-team-form #teamForm></app-team-form>
-<div class="operations">
-  <button class="btn btn-primary" (click)="commit()">提交</button>
-  <button class="btn btn-secondary" (click)="reset()">重填表格</button>
+<div class="text-center">
+  <button class="btn btn-primary btn-lg" (click)="commit()" [disabled]="teamFormComponent.teamForm.invalid">提交</button>
 </div>

@@ -7,18 +7,24 @@
     <button (click)="preview()" class="btn btn-primary btn-sm">预览</button>
     <table class="file-list">
       <tbody>
-      <tr *ngFor="let file of fileList">
-        <td><p-checkbox
-          name="file"
-          [value]="file"
-          [label]="file.fileName"
-          [inputId]="file.id + file.fileName"
-          [(ngModel)]="selectedFiles"
-        ></p-checkbox></td>
-        <td><span class="badge badge-info">{{ file.fileType }}</span></td>
+      <tr *ngFor="let file of fileList" [@ListItemState]="getListItemState(file)" (click)="selectFile(file)">
+        <!--<td><p-checkbox-->
+          <!--name="file"-->
+          <!--[value]="file"-->
+          <!--[label]="file.fileName"-->
+          <!--[inputId]="file.id + file.fileName"-->
+          <!--[(ngModel)]="selectedFiles"-->
+
+        <!--&gt;</p-checkbox></td>-->
         <td>
-          <button (click)="deleteFile(file)" class="btn btn-danger btn-sm">删除</button>
+          <i class="fa fa-check-circle" *ngIf="isSelected(file)"></i>
+          <i class="fa fa-circle-thin" *ngIf="!isSelected(file)"></i>
         </td>
+        <td>{{file.fileName}}</td>
+        <td><span class="badge badge-info">{{ file.fileType }}</span></td>
+        <!--<td>-->
+          <!--<button (click)="deleteFile(file)" class="btn btn-danger btn-sm">删除</button>-->
+        <!--</td>-->
       </tr>
       </tbody>
     </table>

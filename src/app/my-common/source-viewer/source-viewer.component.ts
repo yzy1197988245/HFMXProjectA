@@ -39,7 +39,7 @@ import {DomSanitizer, SafeResourceUrl, SafeUrl} from "@angular/platform-browser"
       state('mouseOver', style({ 'color': '#3f51b5'})),
       state('normal', style({ 'color': '#000000'})),
       transition('* => *', [
-        animate(100)
+        animate(200)
       ]),
     ])
   ]
@@ -50,6 +50,8 @@ export class SourceViewerComponent implements OnInit,AfterViewChecked {
   mouseOverSource;
   isShowBackground = false;
   baseUrl;
+  updateImageTask;
+  createImageTask;
 
   imageView: Viewer;
   imagesrc;
@@ -76,33 +78,39 @@ export class SourceViewerComponent implements OnInit,AfterViewChecked {
         return;
       this.imagesrc = image.getAttribute('src');
       if (this.imageView) {
-        this.imageView.update();
+        clearTimeout(this.updateImageTask);
+        this.updateImageTask = setTimeout(() => {
+          this.imageView.update();
+        }, 200)
         // this.imageView = null;
       } else {
-        this.imageView = new Viewer(image, {
-          inline: true,
-          button: false,
-          navbar: false,
-          title: false,
-          transition:false,
-          toolbar: {
-            zoomIn: 1,
-            zoomOut: 1,
-            oneToOne: 1,
-            reset: 1,
-            prev: 0,
-            play: {
-              show: 0,
-              size: 'large',
+        clearTimeout(this.createImageTask);
+        this.createImageTask = setTimeout(() => {
+          this.imageView = new Viewer(image, {
+            inline: true,
+            button: false,
+            navbar: false,
+            title: false,
+            transition:false,
+            toolbar: {
+              zoomIn: 1,
+              zoomOut: 1,
+              oneToOne: 1,
+              reset: 1,
+              prev: 0,
+              play: {
+                show: 0,
+                size: 'large',
+              },
+              next: 0,
+              rotateLeft: 1,
+              rotateRight: 1,
+              flipHorizontal: 1,
+              flipVertical: 1,
             },
-            next: 0,
-            rotateLeft: 1,
-            rotateRight: 1,
-            flipHorizontal: 1,
-            flipVertical: 1,
-          },
-          keyboard: false
-        });
+            keyboard: false
+          });
+        }, 200);
       }
     } else {
       this.imagesrc = null;
@@ -140,7 +148,7 @@ export class SourceViewerComponent implements OnInit,AfterViewChecked {
     if (this.sourceService.sourceViewerStatus == 'show' && status == 'done') {
       this.currentSource = this.sourceService.sources[0];
     }
-    if (this.sourceService.sourceViewerStatus == 'hide' && status == 'done') {
+    if (this.sourceService.sourceViewerStatus == 'hide' && status == 'start') {
       this.currentSource = null;
     }
   }

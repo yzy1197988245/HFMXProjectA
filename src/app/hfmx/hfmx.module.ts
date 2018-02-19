@@ -62,6 +62,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
   ],
   declarations: [DefaultComponent, Step1Component, AddMemberDialog, TeamComponent, TeamListComponent, CreateTeamComponent, UpdateTeamComponent, TeamInfoComponent, TeamFormComponent, AddMemberDialogComponent, TeamReceiptComponent],
-  entryComponents: [AddMemberDialog, AddMemberDialogComponent, FileUploaderComponent]
+  entryComponents: [AddMemberDialog, AddMemberDialogComponent, TeamInfoComponent]
 })
 export class HfmxModule { }

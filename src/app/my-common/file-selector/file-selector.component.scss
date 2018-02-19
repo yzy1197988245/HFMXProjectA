@@ -1,6 +1,11 @@
 .file-list {
   width: 100%;
 
+  tr {
+    cursor: pointer;
+    border-bottom: 1px solid white;
+  }
+
   td {
     padding: 5px;
   }

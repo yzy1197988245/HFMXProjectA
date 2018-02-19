@@ -14,7 +14,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let team of teamList" role="button">
+    <tr *ngFor="let team of teamList" (click)="showTeamDetail(team)">
       <td>{{team['nf']}}</td>
       <td>{{team['hfzx']}}</td>
       <td>{{team['sf']}}</td>
@@ -22,7 +22,6 @@
       <td>
         <div class="d-inline">
           <button class="btn btn-info btn-sm" [routerLink]="['/hfmx', 'update-team', team.id]">编辑</button>
-          <button class="btn btn-primary btn-sm" [routerLink]="['/hfmx', 'team-info', team.id]">查看</button>
           <button class="btn btn-success btn-sm" [routerLink]="['/hfmx', 'team-receipt', team.id]">填写回执</button>
         </div>
       </td>
